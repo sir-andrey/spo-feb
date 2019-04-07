@@ -10,6 +10,7 @@ use App\Tahun;
 use App\Mapel;
 use App\Siswa;
 use App\Jadwal;
+use App\Guru;
 use Auth;
 use Response;
 use PDF;
@@ -19,6 +20,18 @@ class NilaiController extends Controller
     public function index()
     {
         
+        $id_user = Auth::user()->id;
+
+        $guru = Guru::select('id_guru')->where('id_user', $id_user)->first();
+
+        $id_guru = $guru['id_guru'];
+
+        $mapel = Jadwal::select('id_mapel')->where('id_guru', $id_guru)->first();
+
+        $id_mapel = $mapel['id_mapel'];
+
+        $datanilai = Nilai::select('id_siswa', 'id_mapel')->where('id_mapel', $id_mapel)->distinct()->get();
+
         $nilais = Nilai::all();
         $siswas = Siswa::all();
         $kelas = Kelas::all();
@@ -26,7 +39,7 @@ class NilaiController extends Controller
         $mapels = Mapel::all();
         $tahuns = Tahun::all();
 
-        return view('nilais/index', compact('nilais', 'siswas', 'kelas','jurusan', 'mapels', 'tahuns'));
+        return view('nilais/index', compact('datanilai','nilais', 'siswas', 'kelas','jurusan', 'mapels', 'tahuns'));
     }
 
     /**
@@ -36,13 +49,18 @@ class NilaiController extends Controller
      */
     public function create()
     { 
-        $id_jadwal = Auth::user()->id_jadwal;
+        $id_user = Auth::user()->id;
 
-        $mapel = Jadwal::select('id_mapel')->where('id_jadwal', $id_jadwal)->first();
+        $guru = Guru::select('id_guru')->where('id_user', $id_user)->first();
+
+        $id_guru = $guru['id_guru'];
+
+        $mapel = Jadwal::select('id_mapel')->where('id_guru', $id_guru)->first();
 
         $id_mapel = $mapel['id_mapel'];
 
-        $datanilai = Nilai::where('id_mapel', $id_mapel)->get();
+        $datanilai = Nilai::where('id_mapel', $id_mapel)
+        ->get();
         $nilais = Nilai::all();
         $siswas = Siswa::all();
         $kelas = Kelas::all();

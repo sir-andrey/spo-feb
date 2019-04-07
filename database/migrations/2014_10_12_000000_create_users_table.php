@@ -22,8 +22,6 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->integer('id_level')->unsigned();
             $table->foreign('id_level')->references('id_level')->on('levels')->onUpdate('cascade')->onDelete('cascade');
-            $table->integer('id_jadwal')->unsigned()->nullable();
-            $table->foreign('id_jadwal')->references('id_jadwal')->on('jadwals')->onUpdate('cascade')->onDelete('cascade');
 
             $table->rememberToken();
             $table->timestamps();

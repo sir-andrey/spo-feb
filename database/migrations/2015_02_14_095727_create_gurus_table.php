@@ -15,6 +15,8 @@ class CreateGurusTable extends Migration
     
          Schema::create('gurus', function (Blueprint $table) {
             $table->increments('id_guru');
+            $table->integer('id_user')->unsigned()->nullable();
+            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->string('kode_guru',5)->unique();
             $table->char('nip');
             $table->string('nama_guru',50)->unique();

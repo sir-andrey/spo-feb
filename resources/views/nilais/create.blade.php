@@ -35,21 +35,23 @@
             <a href="{{ route('nilai.print') }}"><button class="btn btn-primary">Cetak Data Siswa</button></a>
             <br>
             <br>
-            <table class="table table-bordered table-striped table-hover" id="data-id">
+            <table class="table table-bordered table-striped table-hover" id="data-id" width="100%">
                 <thead>
                     <tr> 
-                        <th>No.</th>
-                        <th>NISN</th>
-                        <th>Nama</th>
-                        <th>Semester</th>
-                        <th>Mapel</th>
+                        <th rowspan="2">No.</th>
+                        <th rowspan="2">NISN</th>
+                        <th rowspan="2">Nama</th>
+                        <th rowspan="2">Mapel</th>
+                        <th colspan="6">Semester</th>
+                        <th rowspan="2"></th>
+                    </tr>
+                    <tr>
                         <th>N1</th>
                         <th>N2</th>
                         <th>N3</th>
                         <th>PTS</th>
                         <th>PAS</th>
                         <th>NA</th>
-                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -62,7 +64,6 @@
                                 <td>{{ $key+1 }}<input type="hidden" name="id_nilai" value="{{ $siswa->id }}"></td>
                                 <td>{{ $siswa->siswa->nisn }}</td>
                                 <td>{{ $siswa->siswa->nama_siswa }}</td>
-                                <td>{{ $siswa->semester }}</td>
                                 <td>{{ $siswa->mapel->nama_mapel }}</td>
                                 @if($siswa->n1 == NULL)
                                 <td><input type="text" style="text-align: center;" name="n1" class="form-control" value="{{ $siswa->n1 }}"></td>
@@ -96,14 +97,8 @@
                                 
                                 @if ($siswa->n1 != NULL && $siswa->n2 != NULL && $siswa->n3 != NULL && $siswa->pts != NULL && $siswa->pas != NULL)
                                 <td>{{ ($siswa->n1 + $siswa->n2 + $siswa->n3 + $siswa->pts + $siswa->pas) / 5 }}</td>
-                                @elseif ($siswa->n1 != NULL && $siswa->n2 != NULL && $siswa->n3 != NULL && $siswa->pts != NULL)
-                                <td>{{ ($siswa->n1 + $siswa->n2 + $siswa->n3 + $siswa->pts + $siswa->pas) / 4 }}</td>
-                                @elseif($siswa->n1 != NULL && $siswa->n2 != NULL && $siswa->n3 != NULL)
-                                <td>{{ ($siswa->n1 + $siswa->n2 + $siswa->n3 + $siswa->pts + $siswa->pas) / 3 }}</td>
-                                @elseif($siswa->n1 != NULL && $siswa->n2 != NULL)
-                                <td>{{ ($siswa->n1 + $siswa->n2 + $siswa->n3 + $siswa->pts + $siswa->pas) / 2 }}</td>
-                                @elseif($siswa->n1 != NULL)
-                                <td>{{ ($siswa->n1 + $siswa->n2 + $siswa->n3 + $siswa->pts + $siswa->pas) / 1 }}</td>
+                                @else
+                                <td></td>
                                 @endif
                                 <td><button type="submit" class="btn btn-primary col-sm-12">Input</button></td>
 
@@ -120,8 +115,8 @@
                                 <td>{{ $siswa->n1 }}</td>
                                 <td>{{ $siswa->n2 }}</td>
                                 <td>{{ $siswa->n3 }}</td>
-                                <td>{{ $siswa->n4 }}</td>
-                                <td>{{ $siswa->n5 }}</td>
+                                <td>{{ $siswa->pts }}</td>
+                                <td>{{ $siswa->pas }}</td>
                                 <td></td>
                             </tr>
                         @endforeach

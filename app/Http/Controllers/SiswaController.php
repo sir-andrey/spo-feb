@@ -84,14 +84,14 @@ class SiswaController extends Controller
                 $nilai->kode_nilai = "09839";
                 $nilai->id_siswa = $count_id;
                 $nilai->id_mapel = $i;
-                $nilai->semester = "Genap";
+                $nilai->semester = "Ganjil";
                 $nilai->save();
 
                 $nilai = new Nilai;
                 $nilai->kode_nilai = "19839";
                 $nilai->id_siswa = $count_id;
                 $nilai->id_mapel = $i;
-                $nilai->semester = "Ganjil";
+                $nilai->semester = "Genap";
                 $nilai->save();
             }
 
@@ -112,16 +112,14 @@ class SiswaController extends Controller
 
             $awaltempo = "2019-07-01";
 
-            for ($i=1; $i <= $count_mapel; $i++) { 
-                for ($a=0; $a < 12; $a++) { 
-                    $jatuhtempo = date("Y-m-d", strtotime("+$a month", strtotime($awaltempo)));
+            for ($a=0; $a < 12; $a++) { 
+                $jatuhtempo = date("Y-m-d", strtotime("+$a month", strtotime($awaltempo)));
 
-                    $absen = new Absen;
-                    $absen->id_siswa = $count_id;
-                    $absen->bulan = $bulanIndo[date('m', strtotime($jatuhtempo))]." ".date('Y',strtotime($jatuhtempo));
-                    $absen->id_mapel = $i;
-                    $absen->save();
-                }
+                $absen = new Absen;
+                $absen->id_siswa = $count_id;
+                $absen->bulan = $bulanIndo[date('m', strtotime($jatuhtempo))];
+                $absen->id_kelas = $req->id_kelas;
+                $absen->save();
             }
 
             session()->flash('success-create', 'Data Siswa berhasil disimpan');

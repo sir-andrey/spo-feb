@@ -66,6 +66,7 @@ class AkunController extends Controller
         }
 
         $akun = new User;
+        
         $akun->name = $nama;
         $akun->username = $req->username;
         $akun->email = $req->email;
@@ -77,6 +78,9 @@ class AkunController extends Controller
         if ($req->id_level == 4) {
             
             $akun_id = User::select('id')->whereRaw('id = (select max(`id`) from users)')->first();
+            $guru = Guru::select('nama_guru')->where('id_guru', $req->id)->first();
+
+            $
 
             $walikelas = new Walikelas;
             $walikelas->id_user = $akun_id;

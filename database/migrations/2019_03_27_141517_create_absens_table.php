@@ -17,14 +17,12 @@ class CreateAbsensTable extends Migration
             $table->increments('id');
             $table->integer('id_siswa')->unsigned();
             $table->foreign('id_siswa')->references('id_siswa')->on('siswas')->onUpdate('cascade')->onDelete('cascade');
-            $table->integer('id_mapel')->unsigned();
-            $table->foreign('id_mapel')->references('id_mapel')->on('mapels')->onUpdate('cascade')->onDelete('cascade');
-            $table->integer('id_tahun')->unsigned();
-            $table->foreign('id_tahun')->references('id_tahun')->on('tahuns')->onUpdate('cascade')->onDelete('cascade');
+            $table->integer('id_kelas')->unsigned();
+            $table->foreign('id_kelas')->references('id_kelas')->on('kelas')->onUpdate('cascade')->onDelete('cascade');
             $table->string('bulan');
-            $table->integer('sakit');
-            $table->integer('izin');
-            $table->integer('alpa');
+            $table->integer('sakit')->nullable();
+            $table->integer('izin')->nullable();
+            $table->integer('alpa')->nullable();
             $table->timestamps();
         });
     }

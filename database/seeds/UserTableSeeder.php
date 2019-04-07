@@ -30,7 +30,6 @@ class UserTableSeeder extends Seeder
         	'id_level' => '2',
         	'password' => '$2y$10$2agbYlfLenAtqluoFEcRku9e6F.1MLOwh8ATHvmI8GVOpf/HgEC/i',
         	'remember_token' => '1',
-            'id_jadwal' => '1',
         	'created_at'	=> Carbon::now(),
         	'updated_at'	=> Carbon::now(),
         ]);
@@ -55,27 +54,6 @@ class UserTableSeeder extends Seeder
         	'remember_token' => '1',
         	'created_at'	=> Carbon::now(),
         	'updated_at'	=> Carbon::now(),
-        ]);
-
-         DB::table('users')->insert([
-            'name' => 'R.Irfan Santika',
-            'email' => 'irfan@gmail.com',
-            'username' => 'Irfan Santika',
-            'id_level' => '2',
-            'password' => '$2y$10$2agbYlfLenAtqluoFEcRku9e6F.1MLOwh8ATHvmI8GVOpf/HgEC/i',
-            'remember_token' => '1',
-            'created_at'    => Carbon::now(),
-            'updated_at'    => Carbon::now(),
-        ]);
-         DB::table('users')->insert([
-            'name' => 'Gani Setiawan',
-            'email' => 'gani@gmail.com',
-            'username' => 'Gani S',
-            'id_level' => '2',
-            'password' => '$2y$10$2agbYlfLenAtqluoFEcRku9e6F.1MLOwh8ATHvmI8GVOpf/HgEC/i',
-            'remember_token' => '1',
-            'created_at'    => Carbon::now(),
-            'updated_at'    => Carbon::now(),
         ]);
         
     }

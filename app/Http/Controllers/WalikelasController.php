@@ -27,7 +27,7 @@ class WalikelasController extends Controller
         $jurusans = Jurusan::all();
         $tahuns = Tahun::all();
 
-        return view('walikelas/index', compact('walikelas', 'guru','kelas','jurusans','tahuns'));
+        return view('walikelas/index', compact('walikelas', 'gurus','kelas','jurusans','tahuns'));
     }
 
     /**

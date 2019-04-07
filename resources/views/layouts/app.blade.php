@@ -37,6 +37,11 @@
     <link href="{{ asset('vendor/buttons/css/buttons.bootstrap4.min.css') }}" rel="stylesheet">
     <link href="{{ asset('vendor/scroller/css/scroller.bootstrap4.min.css') }}" rel="stylesheet">
     <link href="{{ asset('vendor/responsive/css/responsive.bootstrap4.min.css') }}" rel="stylesheet">
+    <style type="text/css">
+        table{
+            width: 100%;
+        }
+    </style>
 
 </head>
 
@@ -58,8 +63,9 @@
                     <a href="{{ route('guru.index') }}" class="list-group-item list-group-item-action bg-dark">Data Guru</a>
                     <a href="{{ route('nilai.index') }}" class="list-group-item list-group-item-action bg-dark">Data Nilai</a>
                     <a href="{{ route('kelas.index') }}" class="list-group-item list-group-item-action bg-dark">Data Kelas</a>
-                     <a href="{{ route('jurusan.index') }}" class="list-group-item list-group-item-action bg-dark">Data Jurusan</a>
+                    <a href="{{ route('jurusan.index') }}" class="list-group-item list-group-item-action bg-dark">Data Jurusan</a>
                     <a href="{{ route('tahun.index') }}" class="list-group-item list-group-item-action bg-dark">Data Tahun Ajaran</a>    
+                    <a href="{{ route('walikelas.index') }}" class="list-group-item list-group-item-action bg-dark">Data Walikelas</a>    
                 </li>
                 <a href="{{ route('mapel.index') }}" class="list-group-item list-group-item-action bg-light">Mata Pelajaran</a>
                 @endif
@@ -95,7 +101,7 @@
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             {{ auth::user()->name }}
                         </a>
-                        <div id="menu" class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <div id="menu-toggle" class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="#">Profil</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
@@ -155,7 +161,9 @@
     <!-- Datatable Script -->
     <script>
         $(document).ready(function() {
-            $('#data-id').DataTable();
+            $('#data-id').DataTable({
+                "scrollX": true
+            });
         });
     </script>
 
@@ -169,6 +177,37 @@
     <!-- Chained Script -->
     <script>
         $('#kelas').chained('#tahun');
+    </script>
+
+    <!-- Modal Script -->
+    <script>
+        $('#exampleModal').on('show.bs.modal', function (event) {
+          var button = $(event.relatedTarget) // Button that triggered the modal
+          var recipient = button.data('whatever')
+
+          console.log = ('Modal Opened') // Extract info from data-* attributes
+          // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+          // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+          var modal = $(this)
+          modal.find('.modal-title').text('New message to ' + recipient)
+          modal.find('.modal-body input').val(recipient)
+        });
+    </script>
+
+    <!-- Modal Edit Script -->
+    <script>
+        $('#edit').on('show.bs.modal', function (event) {
+              var button = $(event.relatedTarget) 
+              var kode = button.data('kode') 
+              var tahun = button.data('tahun') 
+              var id = button.data('id') 
+              var modal = $(this)
+
+              console.log = ('Modal');
+              modal.find('.modal-body input').val(id);
+              modal.find('.modal-body #kode').val(kode);
+              modal.find('.modal-body #tahun').val(tahun);
+        })
     </script>
 </body>
 

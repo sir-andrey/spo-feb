@@ -1,16 +1,18 @@
 @extends('layouts.app')
-
+@php
+use App\Nilai;
+@endphp
 @section('content')
+
 <section role="main" class="content-body">
 
-
-       <nav aria-label="breadcrumb">
+      <nav aria-label="breadcrumb">
       <ol class="breadcrumb mt-3">
         <li class="breadcrumb-item"><a href="{{ route('home') }}">Beranda</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Data Nilai</li>
+        <li class="breadcrumb-item"><a href="{{ route('nilai.index') }}">Data Nilai</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Penilaian</li>
       </ol>
     </nav>
-
 
 
     <section class="card mt-3">
@@ -23,7 +25,7 @@
                     </button>
                     <strong>Berhasil</strong><br>
                     {{ session()->get('success-create') }}
-                    
+                    <p>Silahkan lihat <a href="{{ route('nilai.index') }}">Data nilai</a></p>
                 </center>
             </div>
         </div>
@@ -35,36 +37,59 @@
             <a href="{{ route('nilai.print') }}"><button class="btn btn-primary">Cetak Data Siswa</button></a>
             <br>
             <br>
-            <table class="table table-bordered table-striped table-hover" id="data-id">
+            <table class="table table-bordered table-striped table-hover" id="data-id" width="100%">
                 <thead>
                     <tr> 
-                        <th>No.</th>
-                        <th>NISN</th>
-                        <th>Nama</th>
-                        <th>Kelas</th>
-                        <th>Tahun Ajaran</th>
-                        <th></th>
+                        <th rowspan="2">No.</th>
+                        <th rowspan="2">NISN</th>
+                        <th rowspan="2">Nama</th>
+                        <th rowspan="2">Mapel</th>
+                        <th colspan="6" style="text-align: center;">Ganjil</th>
+                        <th colspan="6" style="text-align: center;">Genap</th>
+                        <th rowspan="2">Total</th>
+                    </tr>
+                    <tr>
+                        <th>N1</th>
+                        <th>N2</th>
+                        <th>N3</th>
+                        <th>PTS</th>
+                        <th>PAS</th>
+                        <th>NA</th>
+
+                        <th>N1</th>
+                        <th>N2</th>
+                        <th>N3</th>
+                        <th>PTS</th>
+                        <th>PAS</th>
+                        <th>NA</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach( $siswas as $key => $siswa )
-                        <tr>
-                            <td>{{ $key+1 }}</td>
-                            <td>{{ $siswa->nisn }}</td>
-                            <td>{{ $siswa->nama_siswa }}</td>
-                            <td>{{ $siswa->kelas->tingkat }}-
-                                {{ $siswa->kelas->jurusan->nama_jurusan }}-
-                                {{ $siswa->kelas->kelas }}
-                            <td>{{ $siswa->kelas->tahun->tahun }}</td>
-                            <td><a href="{{ route('nilai.detail', $siswa->id_siswa) }}"><button class="btn btn-primary col-sm-8" >Detil</button></a></td>
-                        </tr>
+                        @foreach( $datanilai as $key => $siswa )
+                            <tr>
+                                <td>{{ $key+1 }}</td>
+                                <td>{{ $siswa->siswa->nisn }}</td>
+                                <td>{{ $siswa->siswa->nama_siswa }}</td>
+                                <td>{{ $siswa->mapel->nama_mapel }}</td>
+                                @php
+                                    $nilai = Nilai::where('id_siswa', $siswa->id_siswa)->where('id_mapel', $siswa->id_mapel)->get();
+                                @endphp
+                                @foreach($nilai as $key => $nilais)
+                                <td>{{ $nilais->n1 }}</td>
+                                <td>{{ $nilais->n2 }}</td>
+                                <td>{{ $nilais->n3 }}</td>
+                                <td>{{ $nilais->pts }}</td>
+                                <td>{{ $nilais->pas }}</td>
+                                <td>{{ ($nilais->n1 + $nilais->n2 + $nilais->n3 + $nilais->pts + $nilais->pas) / 5 }}</td>
+                                @endforeach
+                                <td></td>
+
+                            </tr>
                         @endforeach
                 </tbody>
             </table>
         </div>
     </section>
 </section>
-
-
 
 @endsection

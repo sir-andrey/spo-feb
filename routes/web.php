@@ -164,6 +164,21 @@ Route::post('/tahun/update', 'TahunController@update')->name('tahun.update');
 
 Route::get('/tahun/destroy/{id}', 'TahunController@destroy')->name('tahun.destroy');
 
+//walikelas
+Route::get('/walikelas/index', 'WalikelasController@index')->name('walikelas.index');
+
+Route::get('/walikelas/create', 'WalikelasController@create')->name('walikelas.create');
+
+Route::get('/walikelas/print', 'WalikelasController@print')->name('walikelas.print');
+
+Route::post('/walikelas/store', 'WalikelasController@store')->name('walikelas.store');
+
+Route::get('/walikelas/edit/{id}', 'WalikelasController@edit')->name('walikelas.edit');
+
+Route::post('/walikelas/update', 'WalikelasController@update')->name('walikelas.update');
+
+Route::get('/walikelas/destroy/{id}', 'WalikelasController@destroy')->name('walikelas.destroy');
+
 //nilai
 Route::get('/nilai/index', 'NilaiController@index')->name('nilai.index');
 

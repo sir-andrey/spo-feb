@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Absen;
 use App\Nilai;
 use App\Kelas;
 use App\Jurusan;
@@ -10,6 +11,7 @@ use App\Tahun;
 use App\Mapel;
 use App\Siswa;
 use App\Jadwal;
+use App\Walikelas;
 use Auth;
 use Response;
 use PDF;
@@ -19,6 +21,31 @@ class AbsenController extends Controller
     public function index()
     {
         
+        $bulanIndo = array(
+          '01' => 'Januari',
+          '02' => 'Februari',
+          '03' => 'Maret',
+          '04' => 'April',
+          '05' => 'Mei',
+          '06' => 'Juni',
+          '07' => 'Juli',
+          '08' => 'Agustus',
+          '09' => 'September',
+          '10' => 'Oktober',
+          '11' => 'November',
+          '12' => 'Desember',
+        );
+
+        $bulan = $bulanIndo[date('m')];
+
+        $id_user = Auth::user()->id;
+
+        $kelas = Walikelas::select('id_kelas')->where('id_user', $id_user)->first();
+
+        $id_kelas = $kelas['id_kelas'];
+
+        $dataabsen = Absen::select('id_siswa')->where('id_kelas', $id_kelas)->distinct()->get();
+        
         $absens = Nilai::all();
         $siswas = Siswa::all();
         $kelas = Kelas::all();
@@ -26,7 +53,7 @@ class AbsenController extends Controller
         $mapels = Mapel::all();
         $tahuns = Tahun::all();
 
-        return view('absens/index', compact('absens', 'siswas', 'kelas','jurusan', 'mapels', 'tahuns'));
+        return view('absens/index', compact('dataabsen','absens', 'bulan','siswas', 'kelas','jurusan', 'mapels', 'tahuns'));
     }
 
     /**
@@ -36,13 +63,30 @@ class AbsenController extends Controller
      */
     public function create()
     { 
-        $id_jadwal = Auth::user()->id_jadwal;
+        $bulanIndo = array(
+          '01' => 'Januari',
+          '02' => 'Februari',
+          '03' => 'Maret',
+          '04' => 'April',
+          '05' => 'Mei',
+          '06' => 'Juni',
+          '07' => 'Juli',
+          '08' => 'Agustus',
+          '09' => 'September',
+          '10' => 'Oktober',
+          '11' => 'November',
+          '12' => 'Desember',
+        );
 
-        $mapel = Jadwal::select('id_mapel')->where('id_jadwal', $id_jadwal)->first();
+        $bulan = $bulanIndo[date('m')];
 
-        $id_mapel = $mapel['id_mapel'];
+        $id_user = Auth::user()->id;
 
-        $dataabsen = Nilai::where('id_mapel', $id_mapel)->where('semester', 'Genap')->get();
+        $kelas = Walikelas::select('id_kelas')->where('id_user', $id_user)->first();
+
+        $id_kelas = $kelas['id_kelas'];
+
+        $dataabsen = Absen::where('bulan', $bulan)->where('id_kelas', $id_kelas)->get();
         $absens = Nilai::all();
         $siswas = Siswa::all();
         $kelas = Kelas::all();
@@ -50,7 +94,7 @@ class AbsenController extends Controller
         $mapels = Mapel::all();
         $tahuns = Tahun::all();
 
-        return view('absens/create', compact('dataabsen','absens', 'siswas', 'kelas','jurusan', 'mapels', 'tahuns'));
+        return view('absens/create', compact('dataabsen','absens', 'bulan','siswas', 'kelas','jurusan', 'mapels', 'tahuns'));
     }
 
     /**
@@ -61,8 +105,8 @@ class AbsenController extends Controller
      */
     public function store(Request $req)
     {
-        $absen = new Nilai;
-        $absen->id_absen = $req->id_absen;
+        $absen = new Absen;
+        $absen->sakit = $req->id_absen;
         $absen->nisn = $req->nisn;
         $absen->nama = $req->nama;
         $absen->id_kelas = $req->id_kelas;
@@ -104,13 +148,10 @@ class AbsenController extends Controller
      */
     public function update(Request $req)
     {
-        $absen = Nilai::find($req->id_absen);
-        $absen->id = $req->id_absen;
-        $absen->n1 = $req->n1;
-        $absen->n2 = $req->n2;
-        $absen->n3 = $req->n3;
-        $absen->pts = $req->pts;
-        $absen->pas = $req->pas;
+        $absen = Absen::find($req->id_absen);
+        $absen->sakit = $req->sakit;
+        $absen->izin = $req->izin;
+        $absen->alpa = $req->alpa;
         $absen->save();
 
         session()->flash('success-create', 'Data Nilai berhasil disimpan');

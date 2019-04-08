@@ -11,8 +11,6 @@
       </ol>
     </nav>
 
-
-
     <section class="card mt-3">
         @if(session()->has('success-create'))
         <div class="row-md-5">
@@ -27,138 +25,97 @@
             </div>
         </div>
         @endif
+
+        <section class="panel">
+                            @if(session()->has('failed-create'))
+                            <div class="row-md-5">
+                                <div class="alert alert-danger"> 
+                                    <center>
+                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                                        &times;
+                                        </button>
+                                        <strong>Gagal</strong><br>
+                                        {{ session()->get('failed-create') }}
+                                    </center>
+                                </div>
+                            </div>
+                            @endif
+                        </section>
+
         <div class="card-header">
                 <h4>Data Tahun Ajaran</h2>
         </div>
         <div class="card-body">
              
-                <button class="btn btn-primary" data-toggle="modal" data-target="#modalCreate">Tambah Data Tahun Ajaran</button>
+                <button class="btn btn-primary" data-toggle="modal" data-target="#createTahun">Tambah Data Tahun Ajaran</button>
             <a href="{{ route('tahun.print') }}">
                 <button class="btn btn-primary">Cetak Data Tahun Ajaran</button>
             </a>
 
-            <!-- Modal Create -->
-            <div class="modal fade" id="modalCreate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Tambah Tahun</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    <form action="{{ route('tahun.store') }}" method="POST">
-                        @csrf
-                      <div class="form-group">
-                        <label class="col-form-label">Kode Tahun:</label>
-                        <input type="text" class="form-control" name="kode_tahun">
-                      </div>
-
-                      <div class="form-group">
-                        <label class="col-form-label">Tahun Ajaran:</label>
-                        <input type="text" class="form-control" name="tahun">
-                      </div>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Send message</button>
-                  </div>
-                    </form>
-                </div>
-              </div>
-            </div>
-
-            <!-- Modal Edit -->
-            <div class="modal fade" id="tahunedit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ubah Tahun</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    <form action="{{ route('tahun.update') }}" method="POST">
-                        {{method_field('patch')}}
-                        {{csrf_field()}}
-                        <input type="hidden" name="id_tahun" id="id" value="">
-                      <div class="form-group">
-                        <label class="col-form-label">Kode Tahun:</label>
-                        <input type="text" class="form-control" name="kode_tahun" id="kode" value="">
-                      </div>
-
-                      <div class="form-group">
-                        <label class="col-form-label">Tahun Ajaran:</label>
-                        <input type="text" class="form-control" name="tahun" id="tahun" value="">
-                      </div>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Send message</button>
-                  </div>
-                    </form>
-                </div>
-              </div>
-            </div>
-
-            <!-- Modal -->
-<div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="createTahun" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Edit Category</h4>
+        <h5 class="modal-title" id="exampleModalLabel">Tambah Tahun Ajaran</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
-      <form action="{{route('tahun.update','test')}}" method="post">
-            {{method_field('patch')}}
-            {{csrf_field()}}
+      <form method="POST" action="{{ route('tahun.store') }}">
+        @csrf
           <div class="modal-body">
-                <input type="text" name="id_tahun" id="id" value="">
-                
+              <div class="form-group">
+                <label for="recipient-name" class="col-form-label">Kode Tahun:</label>
+                <input type="text" class="form-control" name="kode_tahun" id="kode">
+              </div>
+              <div class="form-group">
+                <label for="recipient-name" class="col-form-label">Tahun:</label>
+                <input type="text" class="form-control" name="tahun" id="tahun">
+              </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Save Changes</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+            <button type="submit" class="btn btn-primary">Tambah</button>
           </div>
       </form>
     </div>
   </div>
 </div>
 
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Open modal for @mdo</button>
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@fat">Open modal for @fat</button>
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Open modal for @getbootstrap</button>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="editTahun" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Ubah Tahun Ajaran</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
-        <form>
-          <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Recipient:</label>
-            <input type="text" class="form-control" id="recipient-name">
+      <form method="POST" action="{{ route('tahun.update') }}">
+        @csrf
+          <div class="modal-body">
+              <div class="form-group">
+                <input type="hidden" class="form-control" name="id_tahun" id="id">
+              </div>
+              <div class="form-group">
+                <label for="recipient-name" class="col-form-label">Kode Tahun:</label>
+                <input type="text" class="form-control" name="kode_tahun" id="kode" readonly="">
+              </div>
+              <div class="form-group">
+                <label for="recipient-name" class="col-form-label">Tahun:</label>
+                <input type="text" class="form-control" name="tahun" id="tahun">
+              </div>
           </div>
-          <div class="form-group">
-            <label for="message-text" class="col-form-label">Message:</label>
-            <textarea class="form-control" id="message-text"></textarea>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+            <button type="submit" class="btn btn-primary">Ubah</button>
           </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Send message</button>
-      </div>
+      </form>
     </div>
   </div>
 </div>
+
 
             <br>
             <br>
@@ -178,7 +135,7 @@
                         <td>{{ $tahun->kode_tahun }}</td>
                         <td>{{ $tahun->tahun }}</td>
                         <td style="text-align: center;">
-                                <button class="btn btn-primary" data-toggle="modal" data-target="#edit" data-id="11" data-kode="{{ $tahun->kode_tahun }}" data-tahun="{{ $tahun->tahun }}">Edit</button>
+                                <button class="btn btn-primary" data-toggle="modal" data-target="#editTahun" data-id="{{ $tahun->id_tahun }}" data-kode="{{ $tahun->kode_tahun }}" data-tahun="{{ $tahun->tahun }}">Edit</button>
                             <a href="{{ route('tahun.destroy', $tahun->id_tahun) }}">
                                 <button class="btn btn-danger col-sm-4" onclick="return confirm('Hapus data ini?')">Hapus
                                 </button></a>

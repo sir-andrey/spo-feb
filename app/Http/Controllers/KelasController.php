@@ -19,8 +19,9 @@ class KelasController extends Controller
     public function index()
     {
         $kelas = Kelas::all();
-        
-        return view('kelas/index', compact('kelas'));
+        $jurusan = Jurusan::all(); 
+        $tahun = Tahun::all(); 
+        return view('kelas/index', compact('kelas','jurusan','tahun'));
     }
 
     /**

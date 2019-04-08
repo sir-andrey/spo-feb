@@ -19,7 +19,7 @@
     <title>E-raport.sch</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
 
     <!-- Font Awesome core CSS -->
     <link href="{{ asset('vendor/fontawesome/css/all.css') }}" rel="stylesheet">
@@ -89,10 +89,10 @@
     <div id="page-content-wrapper">
 
         <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-            <i id="menu-toggle" class="fa fa-align-justify btn-lg"></i>
+            
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon"><i id="menu-toggle"></i></span>
             </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -126,14 +126,14 @@
     </div>
     <!-- /#wrapper -->
 
-    <!-- Bootstrap core JavaScript -->
-    <!-- <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script> -->
-    <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
+</body>
     <!-- Custom JavaScript -->
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/css.js') }}"></script>
-    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/popper.js') }}"></script>
     <script src="{{ asset('js/datatables.min.js') }}"></script>
 
     <!-- Vendor JavaScript -->
@@ -144,10 +144,6 @@
     <script src="{{ asset('vendor/responsive/js/responsive.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('vendor/scroller/js/scroller.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('vendor/jquery-chained/jquery.chained.js') }}"></script>
-
-
-  
-
 
     <!-- Menu Toggle Script -->
     <script>
@@ -181,34 +177,91 @@
 
     <!-- Modal Script -->
     <script>
-        $('#exampleModal').on('show.bs.modal', function (event) {
-          var button = $(event.relatedTarget) // Button that triggered the modal
-          var recipient = button.data('whatever')
-
-          console.log = ('Modal Opened') // Extract info from data-* attributes
-          // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-          // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-          var modal = $(this)
-          modal.find('.modal-title').text('New message to ' + recipient)
-          modal.find('.modal-body input').val(recipient)
-        });
+            $('#exampleModal').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget) // Button that triggered the modal
+  var recipient = button.data('whatever') // Extract info from data-* attributes
+  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+  var modal = $(this)
+  modal.find('.modal-title').text('New message to ' + recipient)
+  modal.find('.modal-body input').val(recipient)
+})
     </script>
 
     <!-- Modal Edit Script -->
     <script>
-        $('#edit').on('show.bs.modal', function (event) {
+        $('#editTahun').on('show.bs.modal', function (event) {
               var button = $(event.relatedTarget) 
               var kode = button.data('kode') 
               var tahun = button.data('tahun') 
               var id = button.data('id') 
               var modal = $(this)
 
+
+
               console.log = ('Modal');
-              modal.find('.modal-body input').val(id);
+              modal.find('.modal-body #id').val(id);
               modal.find('.modal-body #kode').val(kode);
               modal.find('.modal-body #tahun').val(tahun);
         })
     </script>
-</body>
+
+    <!-- Modal Edit Level -->
+
+    <script>
+        $('#editLevel').on('show.bs.modal', function (event) {
+              var button = $(event.relatedTarget) 
+              var kode = button.data('kode') 
+              var nama_level = button.data('level') 
+              var id = button.data('id') 
+              var modal = $(this)
+
+
+
+              console.log = ('Modal');
+              modal.find('.modal-body #id').val(id);
+              modal.find('.modal-body #kode').val(kode);
+              modal.find('.modal-body #nama_level').val(nama_level);
+        })
+    </script>
+
+      <!-- Modal Edit Jurusan -->
+
+    <script>
+        $('#editJurusan').on('show.bs.modal', function (event) {
+              var button = $(event.relatedTarget) 
+              var kode_jurusan = button.data('kode') 
+              var nama_jurusan = button.data('jurusan') 
+              var id = button.data('id') 
+              var modal = $(this)
+
+
+
+              console.log = ('Modal');
+              modal.find('.modal-body #id').val(id);
+              modal.find('.modal-body #kode_jurusan').val(kode_jurusan);
+              modal.find('.modal-body #nama_jurusan').val(nama_jurusan);
+        })
+    </script>
+
+
+      <!-- Modal Edit Kelas -->
+
+    <script>
+        $('#editJurusan').on('show.bs.modal', function (event) {
+              var button = $(event.relatedTarget) 
+              var kode_jurusan = button.data('kode') 
+              var nama_jurusan = button.data('jurusan') 
+              var id = button.data('id') 
+              var modal = $(this)
+
+
+
+              console.log = ('Modal');
+              modal.find('.modal-body #id').val(id);
+              modal.find('.modal-body #kode_jurusan').val(kode_jurusan);
+              modal.find('.modal-body #nama_jurusan').val(nama_jurusan);
+        })
+    </script>
 
 </html>

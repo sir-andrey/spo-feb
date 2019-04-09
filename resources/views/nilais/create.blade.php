@@ -17,26 +17,12 @@
             <h4>Cari</h4>
         </div>
         <div class="card-body">
-            <form action="">
+            <form action="{{ url()->current() }}">
                 <div class="form-group col-md-3">
                     <label for="">Semester</label>
-                    <select name="" id="" class="form-control">
-                        <option value="">Genap</option>
-                        <option value="">Ganjil</option>
-                    </select>
-                </div>
-                <div class="form-group col-md-3">
-                    <label for="">Semester</label>
-                    <select name="" id="" class="form-control">
-                        <option value="">Genap</option>
-                        <option value="">Ganjil</option>
-                    </select>
-                </div>
-                <div class="form-group col-md-3">
-                    <label for="">Semester</label>
-                    <select name="" id="" class="form-control">
-                        <option value="">Genap</option>
-                        <option value="">Ganjil</option>
+                    <select name="semester" id="" class="form-control">
+                        <option value="Genap">Genap</option>
+                        <option value="Ganjil">Ganjil</option>
                     </select>
                 </div>
                 <div class="form-group col-md-3">
@@ -155,7 +141,14 @@
                     @endif
                 </tbody>
             </table>
+            <nav aria-label="Page navigation example">
+  <ul class="pagination">
+    {{ $datanilai->links() }}
+  </ul>
+</nav>
+            
         </div>
+
     </section>
 </section>
 

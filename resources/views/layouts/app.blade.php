@@ -81,6 +81,11 @@
                 <a href="{{ route('absen.create') }}" class="list-group-item list-group-item-action bg-light">Absensi</a>
                 @endif
 
+                <a href="{{ route('logout') }}" class="list-group-item list-group-item-action bg-light" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
+
             </div>
         </div>
     <!-- /#sidebar-wrapper -->
@@ -108,9 +113,7 @@
                                 {{ __('Logout') }}
                             </a>
 
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    @csrf
-                                </form>
+                               
                         </div>
                     </li>
                 </ul>

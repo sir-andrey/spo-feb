@@ -12,7 +12,39 @@
       </ol>
     </nav>
 
-
+    <section class="card mt-3">
+        <div class="card-header">
+            <h4>Cari</h4>
+        </div>
+        <div class="card-body">
+            <form action="">
+                <div class="form-group col-md-3">
+                    <label for="">Semester</label>
+                    <select name="" id="" class="form-control">
+                        <option value="">Genap</option>
+                        <option value="">Ganjil</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="">Semester</label>
+                    <select name="" id="" class="form-control">
+                        <option value="">Genap</option>
+                        <option value="">Ganjil</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="">Semester</label>
+                    <select name="" id="" class="form-control">
+                        <option value="">Genap</option>
+                        <option value="">Ganjil</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <button type="submit" class="btn btn-primary">Cari</button>
+                </div>
+            </form>
+        </div>
+    </section>    
     <section class="card mt-3">
         @if(session()->has('success-create'))
         <div class="row-md-5">
@@ -43,7 +75,7 @@
                         <th rowspan="2">Nama</th>
                         <th rowspan="2">Mapel</th>
                         <th colspan="6">Semester</th>
-                        <th rowspan="2"></th>
+                        <th rowspan="2">#</th>
                     </tr>
                     <tr>
                         <th>N1</th>

@@ -33,7 +33,7 @@
             <a href="{{ route('akun.print') }}"><button class="btn btn-primary col-md-1">Cetak</button></a>
             <br>
             <br>
-            <table class="table table-bordered table-striped table-hover" id="data-id">
+            <table class="table table-bordered table-striped table-hover table-responsive" id="data-id">
                 <thead>
                     <tr>
                         <th style="text-align: center;">Nama</th>

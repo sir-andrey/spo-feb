@@ -163,7 +163,7 @@
 
             <br>
             <br>
-            <table class="table table-bordered table-striped table-hover" id="data-id" width="100%">
+            <table class="table table-bordered table-striped table-hover table-responsive" id="data-id" width="100%">
                 <thead>
                     <tr>
                         <th style="text-align: center;">NO.</th>

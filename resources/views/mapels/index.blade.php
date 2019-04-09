@@ -33,7 +33,7 @@
             <a href="{{ route('mapel.print') }}"><button class="btn btn-primary">Cetak Data</button></a>
             <br>
             <br>
-            <table class="table table-bordered table-striped table-hover" id="data-id">
+            <table class="table table-bordered table-striped table-hover table-responsive" id="data-id">
                 <thead>
                     <tr> 
                         <th>N0.</th>

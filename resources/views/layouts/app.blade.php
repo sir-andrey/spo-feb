@@ -158,9 +158,25 @@
     <script>
         $(document).ready(function() {
             $('#data-id').DataTable({
-                "scrollX": true
+                "scrollX": true,
+                "aLengthMenu": [[10, 25, 50, 100, 250, 500, -1], [10, 25, 50, 100, 250, 500, 'All']],
+                "oLanguage": { 
+                    "sInfo": 'Total _TOTAL_ data ditampilkan (_START_ sampai _END_)',
+                    "sLengthMenu": 'Tampilkan _MENU_ data',   
+                    "sInfoEmpty": 'Tidak ada data.',
+                    "sSearch": 'Pencarian:',
+                    "sEmptyTable": 'Tidak ada data di dalam Database',
+                    "oPaginate": {
+                        "sNext": 'Selanjutnya',
+                        "sLast": 'Terakhir',
+                        "sFirst": 'Pertama',
+                        "sPrevious": 'Sebelumnya'
+                    }
+                }
             });
         });
+
+
     </script>
 
     <!-- Select Script -->

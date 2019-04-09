@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Mapel;
+use App\Jurusan;
 use PDF;
 use DB;
 
@@ -16,8 +17,9 @@ class MapelController extends Controller{
     public function index()
     {
         $mapels = Mapel::all();
+        $jurusans = Jurusan::all();
 
-        return view('mapels/index', compact('mapels'));
+        return view('mapels/index', compact('mapels','jurusans'));
     }
 
     /**
@@ -43,6 +45,8 @@ class MapelController extends Controller{
         $mapel->kode_mapel = $req->kode_mapel;
         
         $mapel->nama_mapel = $req->nama_mapel;
+
+        $mapel->id_jurusan = $req->id_jurusan;
         
         $nama = DB::table('mapels')->where('nama_mapel', $req->nama_mapel)->get();
         $count_nama = count($nama);

@@ -18,8 +18,7 @@
 
     <title>E-raport.sch</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
+    <!-- Bootstrap core CSS --><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <!-- Font Awesome core CSS -->
     <link href="{{ asset('vendor/fontawesome/css/all.css') }}" rel="stylesheet">
@@ -89,10 +88,10 @@
     <div id="page-content-wrapper">
 
         <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-            
+            <i id="menu-toggle" class="fa fa-align-justify btn-lg"></i>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"><i id="menu-toggle"></i></span>
+                <span class="navbar-toggler-icon"></span>
             </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -128,12 +127,14 @@
 
 
 </body>
+<!-- Bootstrap core JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
     <!-- Custom JavaScript -->
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/css.js') }}"></script>
-    <script src="{{ asset('js/jquery.js') }}"></script>
-    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('js/popper.js') }}"></script>
     <script src="{{ asset('js/datatables.min.js') }}"></script>
 
     <!-- Vendor JavaScript -->
@@ -212,7 +213,7 @@
         $('#editLevel').on('show.bs.modal', function (event) {
               var button = $(event.relatedTarget) 
               var kode = button.data('kode') 
-              var nama_level = button.data('level') 
+              var nama_level = button.data('nama_level') 
               var id = button.data('id') 
               var modal = $(this)
 
@@ -230,28 +231,8 @@
     <script>
         $('#editJurusan').on('show.bs.modal', function (event) {
               var button = $(event.relatedTarget) 
-              var kode_jurusan = button.data('kode') 
-              var nama_jurusan = button.data('jurusan') 
-              var id = button.data('id') 
-              var modal = $(this)
-
-
-
-              console.log = ('Modal');
-              modal.find('.modal-body #id').val(id);
-              modal.find('.modal-body #kode_jurusan').val(kode_jurusan);
-              modal.find('.modal-body #nama_jurusan').val(nama_jurusan);
-        })
-    </script>
-
-
-      <!-- Modal Edit Kelas -->
-
-    <script>
-        $('#editJurusan').on('show.bs.modal', function (event) {
-              var button = $(event.relatedTarget) 
-              var kode_jurusan = button.data('kode') 
-              var nama_jurusan = button.data('jurusan') 
+              var kode_jurusan = button.data('kode_jurusan') 
+              var nama_jurusan = button.data('nama_jurusan') 
               var id = button.data('id') 
               var modal = $(this)
 

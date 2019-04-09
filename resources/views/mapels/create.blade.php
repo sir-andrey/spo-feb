@@ -59,7 +59,17 @@
                             <div class="col-md-7">
                                 <input type="text" class="form-control" name="nama_mapel" maxlength="30">
                             </div>
-                        </div>    
+                        </div>
+                        <div class="form-group">
+                            <label for="recipient-name" class="control-label">Jurusan <span class="required">*</span></label>
+                            <select data-plugin-selectTwo name="id_jurusan" class="form-control" id="jurusan">
+                                <option value="">-- Pilih Jurusan --</option>
+                                @foreach ($jurusan as $jurusans)
+                                <option value="{{ $jurusans->id_jurusan }}" class="{{ $jurusans->id_jurusan }}" id="jurusan">{{ $jurusans->nama_jurusan }}  
+                                </option>
+                                @endforeach
+                            </select>
+                         </div>        
                    
                         <div class="form-group" style="margin-left: 220px;">
                             <button type="submit" class="btn btn-primary">Tambah</button>

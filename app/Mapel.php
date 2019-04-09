@@ -11,6 +11,8 @@ class Mapel extends Model
     protected $fillable = [
         'kode_mapel',
     	'nama_mapel',
+        'kategori',
+        'id_jurusan',
     ];
 
     public function jadwal()
@@ -21,6 +23,11 @@ class Mapel extends Model
     public function nilai()
     {
         return $this->belongsTo(Mapel::class, 'id_mapel', 'id_mapel');
+    }
+
+    public function jurusan()
+    {
+        return $this->belongsTo(Jurusan::class, 'id_jurusan', 'id_jurusan');
     }
 
 }

@@ -95,7 +95,7 @@
       <form method="POST" action="{{ route('tahun.update') }}">
         @csrf
           <div class="modal-body">
-              <div class="form-group">
+              <div class="">
                 <input type="hidden" class="form-control" name="id_tahun" id="id">
               </div>
               <div class="form-group">

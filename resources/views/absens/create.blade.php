@@ -30,10 +30,8 @@
             <h4>Data Absensi</h2>
         </div>
         <div class="card-body">
-            <a href="{{ route('absen.print') }}"><button class="btn btn-primary">Cetak Data Siswa</button></a>
             <br>
-            <br>
-            <table class="table table-bordered table-striped table-hover" id="data-id" width="100%">
+            <table class="table table-bordered table-striped table-hover " id="data-id" width="100%">
                 <thead>
                     <tr> 
                         <th rowspan="2">No.</th>
@@ -44,9 +42,9 @@
                         <th rowspan="2" style="width: 50px;"></th>
                     </tr>
                     <tr>
-                        <th style="width: 50px;">Sakit</th>
-                        <th style="width: 50px;">Izin</th>
-                        <th style="width: 50px;">Alpa</th>
+                        <th style="width: 100px;">Sakit</th>
+                        <th style="width: 100px;">Izin</th>
+                        <th style="width: 100px;">Alpa</th>
                     </tr>
                 </thead>
                 <tbody>

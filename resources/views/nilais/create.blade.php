@@ -12,7 +12,25 @@
       </ol>
     </nav>
 
-
+    <section class="card mt-3">
+        <div class="card-header">
+            <h4>Cari</h4>
+        </div>
+        <div class="card-body">
+            <form action="{{ url()->current() }}">
+                <div class="form-group col-md-3">
+                    <label for="">Semester</label>
+                    <select name="semester" id="" class="form-control">
+                        <option value="Genap">Genap</option>
+                        <option value="Ganjil">Ganjil</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <button type="submit" class="btn btn-primary">Cari</button>
+                </div>
+            </form>
+        </div>
+    </section>    
     <section class="card mt-3">
         @if(session()->has('success-create'))
         <div class="row-md-5">
@@ -32,7 +50,7 @@
             <h4>Data Nilai</h2>
         </div>
         <div class="card-body">
-            <a href="{{ route('nilai.print') }}"><button class="btn btn-primary">Cetak Data Siswa</button></a>
+            <a href="{{ route('nilai.print') }}"><button class="btn btn-primary">Cetak Data Nilai</button></a>
             <br>
             <br>
             <table class="table table-bordered table-striped table-hover" id="data-id" width="100%">
@@ -43,7 +61,7 @@
                         <th rowspan="2">Nama</th>
                         <th rowspan="2">Mapel</th>
                         <th colspan="6">Semester</th>
-                        <th rowspan="2"></th>
+                        <th rowspan="2">#</th>
                     </tr>
                     <tr>
                         <th>N1</th>
@@ -123,7 +141,14 @@
                     @endif
                 </tbody>
             </table>
+            <nav aria-label="Page navigation example">
+  <ul class="pagination">
+    {{ $datanilai->links() }}
+  </ul>
+</nav>
+            
         </div>
+
     </section>
 </section>
 

@@ -47,7 +47,7 @@ class NilaiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $req)
     { 
         $id_user = Auth::user()->id;
 
@@ -59,8 +59,16 @@ class NilaiController extends Controller
 
         $id_mapel = $mapel['id_mapel'];
 
-        $datanilai = Nilai::where('id_mapel', $id_mapel)
-        ->get();
+            $this->validate($req, [
+        'limit' => 'integer',
+    ]);
+
+        $datanilai = Nilai::where('id_mapel', $id_mapel)->when($req->semester, function ($query) use ($req) {
+            $query->where('semester', $req->semester);
+        })->paginate($req->limit ? $req->limit : 20);
+
+        $datanilai->appends($req->only('semester'));
+
         $nilais = Nilai::all();
         $siswas = Siswa::all();
         $kelas = Kelas::all();
@@ -164,6 +172,33 @@ class NilaiController extends Controller
         $nilai = Nilai::where('id_siswa', $id_siswa);
 
         return view('nilais/detail');
+    }
+
+    public function paginate($request)
+    {
+        $id_user = Auth::user()->id;
+
+        $guru = Guru::select('id_guru')->where('id_user', $id_user)->first();
+
+        $id_guru = $guru['id_guru'];
+
+        $mapel = Jadwal::select('id_mapel')->where('id_guru', $id_guru)->first();
+
+        $id_mapel = $mapel['id_mapel'];
+
+        return $request->semester;
+
+        $siswas = Nilai::when($request->semester, function ($query) use ($request) {
+            $query->where('semester', $request->semester);
+        })->get();
+
+        $nilais = Nilai::all();
+        $kelas = Kelas::all();
+        $jurusan = Jurusan::all();
+        $mapels = Mapel::all();
+        $tahuns = Tahun::all();
+
+        return view('nilais/index', compact('nilais', 'siswas', 'kelas','jurusan', 'mapels', 'tahuns'));
     }
 
 }

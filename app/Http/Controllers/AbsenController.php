@@ -87,6 +87,7 @@ class AbsenController extends Controller
         $id_kelas = $kelas['id_kelas'];
 
         $dataabsen = Absen::where('bulan', $bulan)->where('id_kelas', $id_kelas)->get();
+
         $absens = Nilai::all();
         $siswas = Siswa::all();
         $kelas = Kelas::all();
@@ -154,7 +155,7 @@ class AbsenController extends Controller
         $absen->alpa = $req->alpa;
         $absen->save();
 
-        session()->flash('success-create', 'Data Nilai berhasil disimpan');
+        session()->flash('success-create', 'Data Absen berhasil disimpan');
         return redirect('/absen/create');
     }
 

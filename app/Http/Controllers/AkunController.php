@@ -147,6 +147,9 @@ class AkunController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $akun = Akun::find($id);
+        $akun->delete();
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+        return redirect()->back();
     }
 }

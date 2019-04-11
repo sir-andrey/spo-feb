@@ -33,7 +33,7 @@
             <a href="{{ route('akun.print') }}"><button class="btn btn-primary col-md-1">Cetak</button></a>
             <br>
             <br>
-            <table class="table table-bordered table-striped table-hover" id="data-id">
+            <table class="table table-bordered table-striped table-hover " id="data-id">
                 <thead>
                     <tr>
                         <th style="text-align: center;">Nama</th>
@@ -50,11 +50,11 @@
                         <td>{{ $data->username }}</td>
                         <td>{{ $data->email }}</td>
                         <td>{{ $data->level->nama_level }}</td>
-                        <td>
-                            <a href="{{ route('akun.edit', $data->id) }}">
-                                <button class="btn btn-primary col-sm-8" >Edit
+                        <td style="text-align: center;">
+                                <button class="btn btn-primary">Edit</button>
+                            <a href="">
+                                <button class="btn btn-danger col-sm-4" onclick="return confirm('Hapus data ini?')">Hapus
                                 </button></a>
-                            </div>
                         </td>
                     </tr>
                     @endforeach

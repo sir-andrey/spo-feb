@@ -32,10 +32,10 @@ use App\Absen;
             <h4>Data Absensi</h2>
         </div>
         <div class="card-body">
-            <a href="{{ route('absen.print') }}"><button class="btn btn-primary">Cetak Data Siswa</button></a>
+            <a href="{{ route('absen.print') }}"><button class="btn btn-primary">Cetak Data Absen</button></a>
             <br>
             <br>
-            <table class="table table-bordered table-striped table-hover" id="data-id">
+            <table class="table table-bordered table-striped table-hover table-responsive" id="data-id">
                 <thead>
                     <tr> 
                         <th rowspan="2">No.</th>

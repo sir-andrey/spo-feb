@@ -27,20 +27,20 @@
         @endif
 
         <section class="panel">
-                            @if(session()->has('failed-create'))
-                            <div class="row-md-5">
-                                <div class="alert alert-danger"> 
-                                    <center>
-                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
-                                        &times;
-                                        </button>
-                                        <strong>Gagal</strong><br>
-                                        {{ session()->get('failed-create') }}
-                                    </center>
-                                </div>
-                            </div>
-                            @endif
-                        </section>
+            @if(session()->has('failed-create'))
+            <div class="row-md-5">
+                <div class="alert alert-danger"> 
+                    <center>
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                        &times;
+                        </button>
+                        <strong>Gagal</strong><br>
+                        {{ session()->get('failed-create') }}
+                    </center>
+                </div>
+            </div>
+            @endif
+        </section>
 
         <div class="card-header">
                 <h4>Data Kelas</h2>
@@ -66,11 +66,11 @@
           <div class="modal-body">
             <div class="form-group">
                 <label for="recipient-name" class="col-form-label">Kode Kelas:</label>
-                <input type="text" class="form-control" name="kode_kelas" id="kode">
+                <input type="text" class="form-control" name="kode_kelas" id="kode" maxlength="5">
             </div>
             <div class="form-group">
                 <label for="recipient-name" class="col-form-label">Tingkat:</label>
-                <input type="text" class="form-control" name="tingkat" maxlength="4" placeholder="Contoh : X/XI/XII/XIII" id="tingkat" required="">
+                <input type="text" class="form-control" name="tingkat" maxlength="4" placeholder="Contoh : X/XI/XII/XIII" id="tingkat" required="" maxlength="4">
             </div>
             <div class="form-group">
                 <label for="recipient-name" class="control-label">Jurusan <span class="required">*</span></label>
@@ -120,35 +120,39 @@
         @csrf
           <div class="modal-body">
               <div class="">
-                <input type="hidden" class="form-control" name="id_level" id="id">
+                <input type="hidden" class="form-control" name="id_kelas" id="id">
               </div>
-              <div class="">
+              <div class="form-group">
                 <label for="recipient-name" class="col-form-label">Kode Kelas:</label>
-                <input type="text" class="form-control" name="kode_level" id="kode" readonly="">
+                <input type="text" class="form-control" name="kode_kelas" id="kode" readonly="">
               </div>
               <div class="form-group">
                 <label for="recipient-name" class="col-form-label">Tingkat:</label>
                 <input type="text" class="form-control" name="tingkat" id="tingkat">
               </div>
-              <div class="form-group">
-                <label for="recipient-name" class="col-form-label">Jurusan:</label>
-                <input type="text" class="form-control" name="jurusan" id="jurusan">
-              </div>
+             <div class="form-group">
+                <label for="recipient-name" class="control-label">Jurusan <span class="required">*</span></label>
+                <select data-plugin-selectTwo name="id_jurusan" class="form-control">
+                    <option value="">-- Pilih Jurusan --</option>
+                    @foreach ($jurusan as $jurusans)
+                        <option value="{{ $jurusans->id_jurusan }}" class="{{ $jurusans->id_jurusan }}" id="jurusan">{{ $jurusans->nama_jurusan }} </option>
+                    @endforeach
+                    </select>
+                </div>   
+              
               <div class="form-group">
                 <label for="recipient-name" class="col-form-label">Kelas:</label>
                 <input type="text" class="form-control" name="kelas" id="kelas">
               </div>
               <div class="form-group">
-                <label for="recipient-name" class="col-form-label">Jurusan:</label>
-                <div class="col-md-7">
-                    <select data-plugin-selectTwo name="id_tahun"  id="tahun" required="true">
+                <label for="recipient-name" class="control-label">Tahun Ajaran <span class="required">*</span></label>
+                <select data-plugin-selectTwo name="id_tahun" class="form-control">
                         <option value="">-- Pilih Tahun Ajaran --</option>
                     @foreach ($tahun as $tahuns)
                         <option value="{{ $tahuns->id_tahun }}" class="{{ $tahuns->id_tahun }}" id="tahun">{{ $tahuns->tahun }} </option>
                     @endforeach
                     </select>
                 </div>
-             </div>   
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
@@ -183,7 +187,7 @@
                             {{ $data->kelas }}</td>
                         <td>{{ $data->tahun->tahun }}</td>
                         <td style="text-align: center;">
-                                <button class="btn btn-primary" data-toggle="modal" data-target="#editKelas" data-id="{{ $data->id_kelas }}" data-kode="{{ $data->kode_kelas }}" data-tingkat="{{ $data->tingkat }}" data-jurusan="{{ $data->jurusan }}" data-kelas="{{ $data->kelas }}" data-tahun="{{ $data->tahun }}">Edit</button>
+                                <button class="btn btn-primary" data-toggle="modal" data-target="#editKelas" data-id="{{ $data->id_kelas }}" data-kode="{{ $data->kode_kelas }}" data-tingkat="{{ $data->tingkat }}" data-jurusan="{{ $data->jurusan->nama_jurusan }}" data-kelas="{{ $data->kelas }}" data-tahun="{{ $data->tahun }}">Edit</button>
                             <a href="{{ route('kelas.destroy', $data->id_kelas) }}">
                                 <button class="btn btn-danger col-sm-4" onclick="return confirm('Hapus data ini?')">Hapus
                                 </button></a>

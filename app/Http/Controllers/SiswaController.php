@@ -26,9 +26,9 @@ class SiswaController extends Controller
         $siswas = Siswa::all();
         $kelas = Kelas::all();
         $jurusans = Jurusan::all();
-        $tahuns = Tahun::all();
+        $tahun = Tahun::all();
 
-        return view('siswas/index', compact('siswas', 'kelas','jurusans','tahuns'));
+        return view('siswas/index', compact('siswas', 'kelas','jurusans','tahun'));
     }
 
     /**

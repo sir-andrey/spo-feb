@@ -123,7 +123,11 @@
 
             <br>
             <br>
+<<<<<<< HEAD
             <table class="table table-bordered table-striped table-hover" id="data-id" width="100%">
+=======
+            <table class="table table-bordered table-striped table-hover table-responsive" id="data-id">
+>>>>>>> 60c7e5b2025bd95de9404a7ef975c9c7e47533f3
                 <thead>
                     <tr>
                         <th style="text-align: center;">NO.</th>

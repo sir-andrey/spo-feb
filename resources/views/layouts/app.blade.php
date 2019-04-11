@@ -57,28 +57,32 @@
                 <a href="{{ route('akun.index') }}" class="list-group-item list-group-item-action bg-light">Manejemen Akun</a>
                 <a href="#data-collapse" data-toggle="collapse" class="list-group-item list-group-item-action bg-light">Data Master</a>
                 <li class="collapse" id="data-collapse">
-                    <a href="{{ route('level.index') }}" class="list-group-item list-group-item-action bg-dark">Data Level</a>
-                    <a href="{{ route('siswa.index') }}" class="list-group-item list-group-item-action bg-dark">Data Siswa</a>
-                    <a href="{{ route('guru.index') }}" class="list-group-item list-group-item-action bg-dark">Data Guru</a>
-                    <a href="{{ route('nilai.index') }}" class="list-group-item list-group-item-action bg-dark">Data Nilai</a>
-                    <a href="{{ route('kelas.index') }}" class="list-group-item list-group-item-action bg-dark">Data Kelas</a>
-                    <a href="{{ route('jurusan.index') }}" class="list-group-item list-group-item-action bg-dark">Data Jurusan</a>
-                    <a href="{{ route('tahun.index') }}" class="list-group-item list-group-item-action bg-dark">Data Tahun Ajaran</a>    
-                    <a href="{{ route('walikelas.index') }}" class="list-group-item list-group-item-action bg-dark">Data Walikelas</a>    
+                    <a href="{{ route('level.index') }}" class="list-group-item list-group-item-action bg-light">Data Level</a>
+                    <a href="{{ route('siswa.index') }}" class="list-group-item list-group-item-action bg-light">Data Siswa</a>
+                    <a href="{{ route('guru.index') }}" class="list-group-item list-group-item-action bg-light">Data Guru</a>
+                    <a href="{{ route('kelas.index') }}" class="list-group-item list-group-item-action bg-light">Data Kelas</a>
+                    <a href="{{ route('jurusan.index') }}" class="list-group-item list-group-item-action bg-light">Data Jurusan</a>
+                    <a href="{{ route('tahun.index') }}" class="list-group-item list-group-item-action bg-light">Data Tahun Ajaran</a>    
+                    <a href="{{ route('walikelas.index') }}" class="list-group-item list-group-item-action bg-light">Data Walikelas</a>    
                 </li>
                 <a href="{{ route('mapel.index') }}" class="list-group-item list-group-item-action bg-light">Mata Pelajaran</a>
                 @endif
                 @if(Auth::user()->id_level == 2)
-                <a href="{{ route('jadwal.index') }}" class="list-group-item list-group-item-action bg-light">Jadwal Pelajaran</a>
-                @endif
-                @if(Auth::user()->id_level == 2)
+                
                 <a href="{{ route('nilai.create') }}" class="list-group-item list-group-item-action bg-light">Penilaian</a>
+                
+                    <a href="{{ route('nilai.index') }}" class="list-group-item list-group-item-action bg-light">Data Nilai</a>
                 @endif
                 @if(Auth::user()->id_level == 4)
-                <a href="#" class="list-group-item list-group-item-action bg-light">Rekapitulasi</a>
-                
                 <a href="{{ route('absen.create') }}" class="list-group-item list-group-item-action bg-light">Absensi</a>
+                <a href="{{ route('absen.index') }}" class="list-group-item list-group-item-action bg-light">Rekapitulasi</a>
+                
                 @endif
+
+                <a href="{{ route('logout') }}" class="list-group-item list-group-item-action bg-light" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
 
             </div>
         </div>
@@ -107,9 +111,7 @@
                                 {{ __('Logout') }}
                             </a>
 
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    @csrf
-                                </form>
+                               
                         </div>
                     </li>
                 </ul>
@@ -159,9 +161,25 @@
     <script>
         $(document).ready(function() {
             $('#data-id').DataTable({
-                "scrollX": true
+                "scrollX": true,
+                "aLengthMenu": [[10, 25, 50, 100, 250, 500, -1], [10, 25, 50, 100, 250, 500, 'All']],
+                "oLanguage": { 
+                    "sInfo": 'Total _TOTAL_ data ditampilkan (_START_ sampai _END_)',
+                    "sLengthMenu": 'Tampilkan _MENU_ data',   
+                    "sInfoEmpty": 'Tidak ada data.',
+                    "sSearch": 'Pencarian:',
+                    "sEmptyTable": 'Tidak ada data di dalam Database',
+                    "oPaginate": {
+                        "sNext": 'Selanjutnya',
+                        "sLast": 'Terakhir',
+                        "sFirst": 'Pertama',
+                        "sPrevious": 'Sebelumnya'
+                    }
+                }
             });
         });
+
+
     </script>
 
     <!-- Select Script -->
@@ -213,7 +231,7 @@
         $('#editLevel').on('show.bs.modal', function (event) {
               var button = $(event.relatedTarget) 
               var kode = button.data('kode') 
-              var nama_level = button.data('nama_level') 
+              var nama_level = button.data('level') 
               var id = button.data('id') 
               var modal = $(this)
 
@@ -231,8 +249,8 @@
     <script>
         $('#editJurusan').on('show.bs.modal', function (event) {
               var button = $(event.relatedTarget) 
-              var kode_jurusan = button.data('kode_jurusan') 
-              var nama_jurusan = button.data('nama_jurusan') 
+              var kode_jurusan = button.data('kode') 
+              var nama_jurusan = button.data('jurusan') 
               var id = button.data('id') 
               var modal = $(this)
 
@@ -242,6 +260,49 @@
               modal.find('.modal-body #id').val(id);
               modal.find('.modal-body #kode_jurusan').val(kode_jurusan);
               modal.find('.modal-body #nama_jurusan').val(nama_jurusan);
+        })
+    </script>
+
+    <script>
+        $('#editKelas').on('show.bs.modal', function (event) {
+              var button = $(event.relatedTarget) 
+              var tahun = button.data('tahun') 
+              var kode = button.data('kode') 
+              var tingkat = button.data('tingkat') 
+              var jurusan = button.data('jurusan') 
+              var kelas = button.data('kelas') 
+              var id = button.data('id') 
+              var modal = $(this)
+
+
+
+              console.log = ('Modal');
+              modal.find('.modal-body #id').val(id);
+              modal.find('.modal-body #kode').val(kode);
+              modal.find('.modal-body #tingkat').val(tingkat);
+              modal.find('.modal-body #kelas').val(kelas);
+              
+        })
+    </script>
+
+
+    <script>
+        $('#editGuru').on('show.bs.modal', function (event) {
+              var button = $(event.relatedTarget) 
+              var guru = button.data('guru') 
+              var kode = button.data('kode') 
+              var id = button.data('id') 
+              var nip = button.data('nip') 
+              var modal = $(this)
+
+
+
+              console.log = ('Modal');
+              modal.find('.modal-body #id').val(id);
+              modal.find('.modal-body #kode').val(kode);
+              modal.find('.modal-body #guru').val(guru);
+              modal.find('.modal-body #nip').val(nip);
+              
         })
     </script>
 

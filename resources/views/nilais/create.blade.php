@@ -61,7 +61,7 @@
                         <th rowspan="2">Nama</th>
                         <th rowspan="2">Mapel</th>
                         <th colspan="6">Semester</th>
-                        <th rowspan="2">#</th>
+                    <th rowspan="2">#</th>
                     </tr>
                     <tr>
                         <th>N1</th>

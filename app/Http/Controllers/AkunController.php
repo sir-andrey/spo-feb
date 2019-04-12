@@ -21,10 +21,16 @@ class AkunController extends Controller
      */
     public function index()
     {
-        $akun = User::all(); 
+       $akuns = User::all();
+        $siswa = Siswa::all();
+        $guru = Guru::all(); 
         $level = Level::all();
+        $jadwal = Jadwal::all();
 
-        return view('akuns/index', compact('akun','level'));
+        $hitungjadwal = count($jadwal);
+        $hitungsiswa = count($siswa);
+
+        return view('akuns/index', compact('akuns','level', 'guru', 'siswa', 'jadwal', 'hitungjadwal', 'hitungsiswa'));
     }
 
     /**
@@ -86,7 +92,7 @@ class AkunController extends Controller
             $walikelas->id_user = $akun_id;
 
         }
-            session()->flash('success-create', 'Data Guru berhasil disimpan');
+            session()->flash('success-create', 'Data berhasil disimpan');
             return redirect('/akun/index');
     }
 

@@ -47,10 +47,10 @@
         </div>
         <div class="card-body">
              
-                <button class="btn btn-primary" data-toggle="modal" data-target="#createKelas">Tambah Data Kelas</button>
-            <a href="{{ route('kelas.print') }}">
-                <button class="btn btn-primary">Cetak Data Kelas</button>
-            </a>
+        <button class="btn btn-primary" data-toggle="modal" data-target="#createKelas">Tambah Data Kelas</button>
+        <a href="{{ route('kelas.print') }}">
+            <button class="btn btn-primary">Cetak Data Kelas</button>
+        </a>
 
 <div class="modal fade" id="createKelas" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">

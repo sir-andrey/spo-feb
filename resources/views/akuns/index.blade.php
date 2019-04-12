@@ -149,22 +149,20 @@
         
                         <input type="hidden" name="id">
 
-                        @if(Auth::user()->id_level == 1 || id_level == 2 || id_level == 3)
                          <div class="form-group">
+                            @if(Auth::user()->id_level == 1 || id_level == 2 || id_level == 4)
+
                             <label class="col-md-3 control-label">NIP<span class="required">*</span></label>
+                            @endif
+                            @if(Auth::user()->id_level == 4)
+                            <label class="col-md-3 control-label">NIP<span class="required">*</span></label>
+                            @endif
                             <div class="col-md-7">
                                 <input type="text" class="form-control" name="nip" readonly="" />
                             </div>
                         </div>
                         @endif
-                        @if(Auth::user()->id_level == 4)
-                         <div class="form-group">
-                            <label class="col-md-3 control-label">NISN<span class="required">*</span></label>
-                            <div class="col-md-7">
-                                <input type="text" class="form-control" name="nisn" readonly="" />
-                            </div>
-                        </div>
-                        @endif
+                        
                         <div class="form-group">
                             <label class="col-sm-3 control-label">Nama <span class="required">*</span></label>
                             <div class="col-sm-9 tambahElemen">

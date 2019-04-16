@@ -66,11 +66,11 @@
           <div class="modal-body">
               <div class="form-group">
                 <label for="recipient-name" class="col-form-label">Kode Jurusan:</label>
-                <input type="text" class="form-control" name="kode_jurusan" id="kode_jurusan">
+                <input type="text" class="form-control" name="kode_jurusan" id="kode_jurusan" maxlength="5">
               </div>
               <div class="form-group">
                 <label for="recipient-name" class="col-form-label">Jurusan:</label>
-                <input type="text" class="form-control" name="nama_jurusan" id="nama_jurusan" required="">
+                <input type="text" class="form-control" name="nama_jurusan" id="nama_jurusan" required="" onkeypress="return hanyaHuruf(event)" >
               </div>
           </div>
           <div class="modal-footer">
@@ -100,11 +100,11 @@
               </div>
               <div class="form-group">
                 <label for="recipient-name" class="col-form-label">Kode Jurusan:</label>
-                <input type="text" class="form-control" name="kode_jurusan" id="kode_jurusan" readonly="">
+                <input type="text" class="form-control" name="kode_jurusan" id="kode_jurusan" readonly="" maxlength="5">
               </div>
               <div class="form-group">
                 <label for="recipient-name" class="col-form-label">Jurusan:</label>
-                <input type="text" class="form-control" name="nama_jurusan" id="nama_jurusan">
+                <input type="text" class="form-control" name="nama_jurusan" id="nama_jurusan" onkeypress="return hanyaHuruf(event)">
               </div>
           </div>
           <div class="modal-footer">

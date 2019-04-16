@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Mapel;
+use App\Tahun;
 use App\Jurusan;
 use PDF;
 use DB;
@@ -16,10 +17,10 @@ class MapelController extends Controller{
      */
     public function index()
     {
-        $mapels = Mapel::all();
-        $jurusans = Jurusan::all();
+        $mapel = Mapel::all();
+        $jurusan = Jurusan::all();
 
-        return view('mapels/index', compact('mapels','jurusans'));
+        return view('mapels/index', compact('mapel','jurusan'));
     }
 
     /**

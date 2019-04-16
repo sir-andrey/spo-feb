@@ -70,7 +70,7 @@
             </div>
             <div class="form-group">
                 <label for="recipient-name" class="col-form-label">Tingkat:</label>
-                <input type="text" class="form-control" name="tingkat" maxlength="4" placeholder="Contoh : X/XI/XII/XIII" id="tingkat" required="" maxlength="4">
+                <input type="text" class="form-control" name="tingkat" maxlength="4" placeholder="Contoh : X/XI/XII/XIII" id="tingkat" required="" maxlength="4" onkeypress="return hanyaHuruf(event)" >
             </div>
             <div class="form-group">
                 <label for="recipient-name" class="control-label">Jurusan <span class="required">*</span></label>
@@ -84,7 +84,7 @@
             </div>    
             <div class="form-group">
                 <label for="recipient-name" class="control-label">Kelas <span class="required">*</span></label>
-                <input type="text" class="form-control" name="kelas" maxlength="1" placeholder="Contoh : A/B/C/D">
+                <input type="text" class="form-control" name="kelas" maxlength="1" placeholder="Contoh : A/B/C/D" onkeypress="return hanyaHuruf(event)" >
             </div> 
             <div class="form-group">
                 <label for="recipient-name" class="control-label">Tahun Ajaran <span class="required">*</span></label>
@@ -124,11 +124,11 @@
               </div>
               <div class="form-group">
                 <label for="recipient-name" class="col-form-label">Kode Kelas:</label>
-                <input type="text" class="form-control" name="kode_kelas" id="kode" readonly="">
+                <input type="text" class="form-control" name="kode_kelas" id="kode" readonly="" maxlength="5">
               </div>
               <div class="form-group">
                 <label for="recipient-name" class="col-form-label">Tingkat:</label>
-                <input type="text" class="form-control" name="tingkat" id="tingkat">
+                <input type="text" class="form-control" name="tingkat" id="tingkat" onkeypress="return hanyaHuruf(event)" >
               </div>
              <div class="form-group">
                 <label for="recipient-name" class="control-label">Jurusan <span class="required">*</span></label>
@@ -142,7 +142,7 @@
               
               <div class="form-group">
                 <label for="recipient-name" class="col-form-label">Kelas:</label>
-                <input type="text" class="form-control" name="kelas" id="kelas">
+                <input type="text" class="form-control" name="kelas" id="kelas" onkeypress="return hanyaHuruf(event)" >
               </div>
               <div class="form-group">
                 <label for="recipient-name" class="control-label">Tahun Ajaran <span class="required">*</span></label>

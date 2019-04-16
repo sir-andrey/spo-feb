@@ -49,7 +49,7 @@ class LevelController extends Controller
         $count_kode_level = count($kode_level);
 
         if ($count_nama_level > 0 || $count_kode_level > 0){
-            session()->flash('failed-create', 'Data Kode atau Level tersebut sudah ada');
+            session()->flash('failed-create', 'Data tersebut sudah ada');
             return redirect()->back();
         } else {
             $level->save();

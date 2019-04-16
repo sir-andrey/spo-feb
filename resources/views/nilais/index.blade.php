@@ -34,19 +34,28 @@ use App\Nilai;
             <h4>Data Nilai</h2>
         </div>
         <div class="card-body">
-            <a href="{{ route('nilai.print') }}"><button class="btn btn-primary">Cetak Data Siswa</button></a>
+            <a href="{{ route('nilai.print') }}"><button class="btn btn-primary"><i class="fa fa-print"></i> Cetak Data Nilai</button></a>
             <br>
             <br>
             <table class="table table-bordered table-striped table-hover " id="data-id" width="100%">
                 <thead>
+                    <tr>
+                        
+                    </tr>
                     <tr> 
-                        <th rowspan="2">No.</th>
-                        <th rowspan="2">NISN</th>
-                        <th rowspan="2">Nama</th>
-                        <th rowspan="2">Mapel</th>
-                        <th colspan="6" style="text-align: center;">Ganjil</th>
-                        <th colspan="6" style="text-align: center;">Genap</th>
-                        <th rowspan="2">Total</th>
+                        <th rowspan="3">No.</th>
+                        <th rowspan="3">NISN</th>
+                        <th rowspan="3">Nama</th>
+                        <th rowspan="3">Mapel</th>
+                        <th colspan="14" style="text-align: center;">Semester</th>
+                        <th rowspan="3">Total</th>
+                        
+                    </tr>
+                    <tr>
+                        <th colspan="7" style="text-align: center;">Ganjil</th>
+                        <th colspan="7" style="text-align: center;">Genap</th>
+                        
+                        
                     </tr>
                     <tr>
                         <th>N1</th>
@@ -55,6 +64,7 @@ use App\Nilai;
                         <th>PTS</th>
                         <th>PAS</th>
                         <th>NA</th>
+                        <th>Total</th>
 
                         <th>N1</th>
                         <th>N2</th>
@@ -62,6 +72,7 @@ use App\Nilai;
                         <th>PTS</th>
                         <th>PAS</th>
                         <th>NA</th>
+                        <th>Total</th>
                     </tr>
                 </thead>
                 <tbody>

@@ -155,7 +155,7 @@
                             <label class="col-md-3 control-label">NIP<span class="required">*</span></label>
                             @endif
                             @if(Auth::user()->id_level == 4)
-                            <label class="col-md-3 control-label">NIP<span class="required">*</span></label>
+                            <label class="col-md-3 control-label">NISN<span class="required">*</span></label>
                             @endif
                             <div class="col-md-7">
                                 <input type="text" class="form-control" name="nip" readonly="" />

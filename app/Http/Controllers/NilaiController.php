@@ -130,7 +130,7 @@ class NilaiController extends Controller
      */
     public function update(Request $req)
     {
-        $nilai = Nilai::find($req->id_nilai);
+        $nilai = Nilai::find($req->id_kelas);
         $nilai->id = $req->id_nilai;
         $nilai->n1 = $req->n1;
         $nilai->n2 = $req->n2;
@@ -141,6 +141,7 @@ class NilaiController extends Controller
 
         session()->flash('success-create', 'Data Nilai berhasil disimpan');
         return redirect('/nilai/create');
+    
     }
 
     /**

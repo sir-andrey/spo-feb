@@ -70,7 +70,7 @@
               </div>
               <div class="form-group">
                 <label for="recipient-name" class="col-form-label">Level:</label>
-                <input type="text" class="form-control" name="nama_level" id="nama_level">
+                <input type="text" class="form-control" name="nama_level" id="nama_level" onkeypress="return hanyaHuruf(event)" >
               </div>
           </div>
           <div class="modal-footer">
@@ -104,7 +104,7 @@
               </div>
               <div class="form-group">
                 <label for="recipient-name" class="col-form-label">Level:</label>
-                <input type="text" class="form-control" name="nama_level" id="nama_level">
+                <input type="text" class="form-control" name="nama_level" id="nama_level" onkeypress="return hanyaHuruf(event)" >
               </div>
           </div>
           <div class="modal-footer">

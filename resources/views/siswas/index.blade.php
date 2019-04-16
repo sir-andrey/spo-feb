@@ -28,8 +28,8 @@
                 <h4>Data Siswa</h2>
         </div>
         <div class="card-body">
-            <button class="btn btn-primary" data-toggle="modal" data-target="#createSiswa">Tambah Data</button>
-            <a href="{{ route('siswa.print') }}"><button class="btn btn-primary">Cetak Data</button></a>                     
+            <button class="btn btn-primary" data-toggle="modal" data-target="#createSiswa"><i class="fa fa-plus"></i> Tambah Data</button>
+            <a href="{{ route('siswa.print') }}"><button class="btn btn-primary"><i class="fa fa-print"></i> Cetak Data</button></a>                     
             <br>
             <br>
             <table class="table table-bordered table-striped table-hover " id="data-id">
@@ -55,13 +55,17 @@
                             <td>{{ $siswa->kelas->tahun->tahun }}</td>
                             <td style="text-align: center;">
                             <a href="{{ route('siswa.edit', $siswa->id_siswa) }}">
-                                <button class="btn btn-primary col-sm-4" >
-                                    Edit
+                                <button class="btn btn-primary col-sm-3" >
+                                    <i class="fa fa-pencil-alt"></i> Edit
                                 </button>
                             </a>
                             <a href="{{ route('siswa.destroy', $siswa->id_siswa) }}">
-                                <button class="btn btn-danger col-sm-4" onclick="return confirm('Hapus data ini?')">
-                                    Hapus
+                                <button class="btn btn-danger col-sm-3" onclick="return confirm('Hapus data ini?')">
+                                    <i class="fa fa-trash-alt"></i> Hapus
+                                </button>
+                            </a>
+                            <a href="{{ route('siswa.printRaport', $siswa->id_siswa) }}">
+                                <button class="btn btn-success col-sm-3" ><i class="fa fa-print"></i> Cetak
                                 </button>
                             </a></td>
                         </tr>
@@ -77,7 +81,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Tambah Kelas</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Tambah Siswa</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -86,26 +90,26 @@
                 @csrf
                 <div class="modal-body">
                     <div class="form-group">
-                        <label class="col-md-3 control-label">Kode Siswa<span class="required">*</span></label>
-                        <div class="col-md-7">
+                        <label class="control-label">Kode Siswa<span class="required">*</span></label>
+                        <div class="">
                             <input type="text" class="form-control" name="kode_siswa" maxlength="5">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-3 control-label">NISN <span class="required">*</span></label>
-                        <div class="col-md-7">
-                            <input type="text" class="form-control" name="nisn" maxlength="10">
+                        <label class="control-label">NISN <span class="required">*</span></label>
+                        <div class="">
+                            <input type="text" onkeypress="return hanyaAngka(event)" maxlength="10" name="nisn" class="form-control" />
                         </div>
                     </div> 
                     <div class="form-group">
-                        <label class="col-md-3 control-label">Nama <span class="required">*</span></label>
-                        <div class="col-md-7">
-                            <input type="text" class="form-control" name="nama_siswa" maxlength="50" >
+                        <label class="control-label">Nama <span class="required">*</span></label>
+                        <div class="">
+                            <input type="text" class="form-control" name="nama_siswa" maxlength="50" onkeypress="return hanyaHuruf(event)" >
                         </div>
                     </div> 
                     <div class="form-group">
-                        <label class="col-md-3 control-label" for="name">Tahun Ajaran</label>
-                        <div class="col-md-7">
+                        < <label class="control-label">Tahun Ajaran <span class="required">*</span></label>
+                        <div class="">
                             <select name="id_tahun" id="tahun" class="form-control">
                                 <option value="">-- Pilih Tahun --</option>
                                 @foreach ($tahun as $data)
@@ -115,8 +119,8 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-3 control-label" for="name">Kelas</label>
-                        <div class="col-md-7">
+                         <label class="control-label">Kelas <span class="required">*</span></label>
+                        <div class="">
                             <select name="id_kelas" id="kelas" class="form-control">
                                 <option value="">-- Pilih Tahun terlebih dahulu --</option>
                                 @foreach ($kelas as $datas)

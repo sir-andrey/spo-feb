@@ -60,7 +60,7 @@
                         <th rowspan="2">NISN</th>
                         <th rowspan="2">Nama</th>
                         <th rowspan="2">Mapel</th>
-                        <th colspan="6">Semester</th>
+                        <th colspan="6" style="text-align: center;">Semester</th>
                     <th rowspan="2">#</th>
                     </tr>
                     <tr>
@@ -79,36 +79,36 @@
                             <tr>
                                 <form role="form" action="{{ route('nilai.update') }}" method="POST">
                                 @csrf
-                                <td>{{ $key+1 }}<input type="hidden" name="id_nilai" value="{{ $siswa->id }}"></td>
+                                <td>{{ $key+1 }}<input type="hidden" name="id_nilai" value="{{ $siswa->id_mapel }}"></td>
                                 <td>{{ $siswa->siswa->nisn }}</td>
                                 <td>{{ $siswa->siswa->nama_siswa }}</td>
                                 <td>{{ $siswa->mapel->nama_mapel }}</td>
                                 @if($siswa->n1 == NULL)
-                                <td><input type="text" style="text-align: center;" name="n1" class="form-control" value="{{ $siswa->n1 }}"></td>
+                                <td><input type="text" style="text-align: center;" name="n1" class="form-control" value="{{ $siswa->n1 }}" onkeypress="return hanyaAngka(event)" maxlength="3"></td>
                                 @else
                                 <td style="text-align: center;">{{ $siswa->n1 }} <input type="hidden" name="n1" value="{{ $siswa->n1 }}"></td>
                                 @endif
 
                                 @if($siswa->n2 == NULL)
-                                <td><input type="text" style="text-align: center;" name="n2" class="form-control" value="{{ $siswa->n2 }}"></td>
+                                <td><input type="text" style="text-align: center;" name="n2" class="form-control" value="{{ $siswa->n2 }}" onkeypress="return hanyaAngka(event)" maxlength="3"></td>
                                 @else
                                 <td style="text-align: center;">{{ $siswa->n2 }} <input type="hidden" name="n2" value="{{ $siswa->n2 }}"></td>
                                 @endif
 
                                 @if($siswa->n3 == NULL)
-                                <td><input type="text" style="text-align: center;" name="n3" class="form-control" value="{{ $siswa->n3 }}"></td>
+                                <td><input type="text" style="text-align: center;" name="n3" class="form-control" value="{{ $siswa->n3 }}" onkeypress="return hanyaAngka(event)" maxlength="3"></td>
                                 @else
                                 <td style="text-align: center;">{{ $siswa->n3 }} <input type="hidden" name="n3" value="{{ $siswa->n3 }}"></td>
                                 @endif
 
                                 @if($siswa->pts == NULL)
-                                <td><input type="text" style="text-align: center;" name="pts" class="form-control" value="{{ $siswa->pts }}"></td>
+                                <td><input type="text" style="text-align: center;" name="pts" class="form-control" value="{{ $siswa->pts }}" onkeypress="return hanyaAngka(event)" maxlength="3"></td>
                                 @else
                                 <td style="text-align: center;">{{ $siswa->pts }} <input type="hidden" name="pts" value="{{ $siswa->pts }}"></td>
                                 @endif
 
                                 @if($siswa->pas == NULL)
-                                <td><input type="text" style="text-align: center;" name="pas" class="form-control" value="{{ $siswa->pas }}"></td>
+                                <td><input type="text" style="text-align: center;" name="pas" class="form-control" value="{{ $siswa->pas }}" onkeypress="return hanyaAngka(event)" maxlength="3"></td>
                                 @else
                                 <td style="text-align: center;">{{ $siswa->pas }} <input type="hidden" name="pas" value="{{ $siswa->pas }}"></td>
                                 @endif
@@ -118,11 +118,13 @@
                                 @else
                                 <td></td>
                                 @endif
-                                <td><button type="submit" class="btn btn-primary col-sm-12">Input</button></td>
+                                <td><button type="submit" class="btn btn-primary col-sm-12">Edit</button></td>
 
-                            </form>
+                            
                             </tr>
                         @endforeach
+                        <button type="submit">Input</button>
+                        </form>
                     @elseif ( Auth::user()->id_level == 4 )
                         @foreach( $datanilai as $key => $siswa )
                             <tr>

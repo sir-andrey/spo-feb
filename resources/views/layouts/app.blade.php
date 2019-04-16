@@ -62,6 +62,8 @@
                     <a href="{{ route('guru.index') }}" class="list-group-item list-group-item-action bg-light">Data Guru</a>
                     <a href="{{ route('kelas.index') }}" class="list-group-item list-group-item-action bg-light">Data Kelas</a>
                     <a href="{{ route('jurusan.index') }}" class="list-group-item list-group-item-action bg-light">Data Jurusan</a>
+
+                    <a href="{{ route('mapel.index') }}" class="list-group-item list-group-item-action bg-light">Data Mata Pelajaran</a>
                     <a href="{{ route('tahun.index') }}" class="list-group-item list-group-item-action bg-light">Data Tahun Ajaran</a>    
                     <a href="{{ route('walikelas.index') }}" class="list-group-item list-group-item-action bg-light">Data Walikelas</a>    
                 </li>
@@ -306,4 +308,44 @@
         })
     </script>
 
+    <script>
+        $('#editMapel').on('show.bs.modal', function (event) {
+              var button = $(event.relatedTarget) 
+              var nama = button.data('nama') 
+              var kode = button.data('kode') 
+              var id = button.data('id') 
+              var kategori = button.data('kategori') 
+              var jurusan = button.data('jurusan') 
+              var modal = $(this)
+
+
+
+              console.log = ('Modal');
+              modal.find('.modal-body #id').val(id);
+              modal.find('.modal-body #kode').val(kode);
+              modal.find('.modal-body #nama').val(nama);
+              modal.find('.modal-body #jurusan').val(jurusan);
+              modal.find('.modal-body #kategori').val(kategori);
+              
+        })
+    </script>
+
+    <script>
+      function hanyaAngka(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode
+         if (charCode > 31 && (charCode < 48 || charCode > 57))
+   
+          return false;
+        return true;
+      }
+    </script>
+
+    <script>
+      function hanyaHuruf(evt) {
+       var charCode = (evt.which) ? evt.which : event.keyCode
+        if ((charCode < 65 || charCode > 90)&&(charCode < 97 || charCode > 122)&&charCode>32)
+            return false;
+        return true;
+      }
+    </script>
 </html>

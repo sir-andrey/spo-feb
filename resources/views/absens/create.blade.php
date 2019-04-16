@@ -58,10 +58,10 @@
                                 <td>{{ $siswa->siswa->nisn }}</td>
                                 <td>{{ $siswa->siswa->nama_siswa }}</td>
                                 <td>{{ $siswa->kelas->tingkat }} {{ $siswa->kelas->jurusan->nama_jurusan }} {{ $siswa->kelas->kelas }}</td>
-                                <td><input type="number" max="31" maxlength="3" style="text-align: center;" name="sakit" class="form-control" value="{{ $siswa->sakit }}"></td>
-                                <td><input type="number" max="31" maxlength="3" style="text-align: center;" name="izin" class="form-control" value="{{ $siswa->izin }}"></td>
-                                <td><input type="number" max="31" maxlength="3" style="text-align: center;" name="alpa" class="form-control" value="{{ $siswa->alpa }}"></td>
-                                <td><button type="submit" class="btn btn-primary col-sm-12">Input</button></td>
+                                <td><input type="text" max="31" maxlength="3" style="text-align: center;" name="sakit" class="form-control" value="{{ $siswa->sakit }}" onkeypress="return hanyaAngka(event)"></td>
+                                <td><input type="text" max="31" maxlength="3" style="text-align: center;" name="izin" class="form-control" value="{{ $siswa->izin }}" onkeypress="return hanyaAngka(event)"></td>
+                                <td><input type="text" max="31" maxlength="3" style="text-align: center;" name="alpa" class="form-control" value="{{ $siswa->alpa }}" onkeypress="return hanyaAngka(event)"></td>
+                                <td><button     type="submit" class="btn btn-primary col-sm-12">Input</button></td>
 
                             </form>
                             </tr>

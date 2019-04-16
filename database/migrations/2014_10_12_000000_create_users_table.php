@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             
             $table->integer('id_level')->unsigned();
-            $table->foreign('id_level')->references('id_level')->on('levels')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('idd_level')->references('id_level')->on('levels')->onUpdate('cascade')->onDelete('cascade');
 
             $table->rememberToken();
             $table->timestamps();

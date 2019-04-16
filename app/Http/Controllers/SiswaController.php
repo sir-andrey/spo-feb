@@ -195,16 +195,15 @@ class SiswaController extends Controller
         return $pdf->stream('Cetak siswa.pdf');
     }
 
-    public function getKelas($param){
-      //GET THE ACCOUNT BASED ON TYPE
-      $kelas = Kelas::where('id_tahun','=',$param)->get();
-      //CREATE AN ARRAY 
-      $options = array();      
-      foreach ($kelas as $arrayForEach) {
-                $options += array($arrayForEach->id_kelas => $arrayForEach->nama);                
-            }
-      
-      return Response::json($options);
+    public function printRaport($id_siswa)
+    {   
 
+        $siswa = Siswa::find($id_siswa);
+
+        $pdf = PDF::loadview('siswas/cetakRaport', compact('siswa'), ['siswa' => $siswa]);
+
+        return $pdf->stream('Cetak Raport.pdf');
     }
+
+    
 }

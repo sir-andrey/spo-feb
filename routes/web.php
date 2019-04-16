@@ -106,6 +106,8 @@ Route::get('/siswa/create', 'SiswaController@create')->name('siswa.create');
 
 Route::get('/siswa/print', 'SiswaController@print')->name('siswa.print');
 
+Route::get('/siswa/printRaport', 'SiswaController@print')->name('siswa.printRaport');
+
 Route::post('/siswa/store', 'SiswaController@store')->name('siswa.store');
 
 Route::get('/siswa/edit/{id}', 'SiswaController@edit')->name('siswa.edit');

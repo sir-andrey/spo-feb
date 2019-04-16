@@ -39,7 +39,7 @@
                    
             
 
-                    <div class="container-login100-form-btn">x
+                    <div class="container-login100-form-btn">
                         <button class="login100-form-btn">
                             Login
                         </button>

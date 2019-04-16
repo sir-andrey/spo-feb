@@ -49,7 +49,7 @@ class TahunController extends Controller
         $count_kode_tahun = count($kode_tahun);
 
         if ($count_nama_tahun > 0 || $count_kode_tahun > 0){
-            session()->flash('failed-create', 'Data Kode atau Tahun tersebut sudah ada');
+            session()->flash('failed-create', 'Data tersebut sudah ada');
             return redirect()->back();
         } else {
             $tahun->save();

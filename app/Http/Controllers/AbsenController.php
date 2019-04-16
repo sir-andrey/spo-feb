@@ -112,7 +112,7 @@ class AbsenController extends Controller
         $absen->nama = $req->nama;
         $absen->id_kelas = $req->id_kelas;
         $absen->save();
-        session()->flash('success-create', 'Data Nilai berhasil disimpan');
+        session()->flash('success-create', 'Data Absen berhasil disimpan');
         return redirect('/absen/index');
     }
 

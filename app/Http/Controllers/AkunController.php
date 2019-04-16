@@ -92,7 +92,7 @@ class AkunController extends Controller
             $walikelas->id_user = $akun_id;
 
         }
-            session()->flash('success-create', 'Data berhasil disimpan');
+            session()->flash('success-create', 'Data Akun berhasil disimpan');
             return redirect('/akun/index');
     }
 

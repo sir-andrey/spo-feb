@@ -51,77 +51,77 @@
             <a href="{{ route('tahun.print') }}">
                 <button class="btn btn-primary">Cetak Data Guru</button>
             </a>
-<div class="modal fade" id="createGuru" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Tambah Tahun Ajaran</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <form method="POST" action="{{ route('guru.store') }}">
-        @csrf
-          <div class="modal-body">
-              <div class="form-group">
-                <label for="recipient-name" class="col-form-label">Kode Guru:</label>
-                <input type="text" class="form-control" name="kode_guru" id="kode">
+            <div class="modal fade" id="createGuru" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Tambah Tahun Ajaran</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <form method="POST" action="{{ route('guru.store') }}">
+                    @csrf
+                      <div class="modal-body">
+                          <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Kode Guru:</label>
+                            <input type="text" class="form-control" name="kode_guru" id="kode" maxlength="5">
+                          </div>
+                          <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">NIP:</label>
+                            <input type="text" onkeypress="return hanyaAngka(event)" maxlength="10" name="nip" class="form-control" />
+                          </div>
+                          <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Nama:</label>
+                            <input type="text" class="form-control" name="nama_guru" id="nama_guru" onkeypress="return hanyaHuruf(event)" >
+                          </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                        <button type="submit" class="btn btn-primary">Tambah</button>
+                      </div>
+                  </form>
+                </div>
               </div>
-              <div class="form-group">
-                <label for="recipient-name" class="col-form-label">NIP:</label>
-                <input type="text" class="form-control" name="nip" id="nip">
-              </div>
-              <div class="form-group">
-                <label for="recipient-name" class="col-form-label">Nama:</label>
-                <input type="text" class="form-control" name="nama_guru" id="nama_guru">
-              </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-            <button type="submit" class="btn btn-primary">Tambah</button>
-          </div>
-      </form>
-    </div>
-  </div>
-</div>
+            </div>
 
 
-<div class="modal fade" id="editGuru" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Ubah Guru</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <form method="POST" action="{{ route('guru.update') }}">
-        @csrf
-          <div class="modal-body">
-              <div class="">
-                <input type="hidden" class="form-control" name="id_guru" id="id">
+          <div class="modal fade" id="editGuru" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Ubah Guru</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <form method="POST" action="{{ route('guru.update') }}">
+                  @csrf
+                    <div class="modal-body">
+                        <div class="">
+                          <input type="hidden" class="form-control" name="id_guru" id="id">
+                        </div>
+                        <div class="form-group">
+                          <label for="recipient-name" class="col-form-label">Kode Guru:</label>
+                          <input type="text" class="form-control" name="kode_guru" id="kode" readonly="" maxlength="5">
+                        </div>
+                        <div class="form-group">
+                          <label for="recipient-name" class="col-form-label">NIP:</label>
+                          <input type="text" class="form-control" name="nip" id="nip" onkeypress="return hanyaAngka(event)" >
+                        </div>
+                        <div class="form-group">
+                          <label for="recipient-name" class="col-form-label">Nama:</label>
+                          <input type="text" class="form-control" name="nama_guru" id="guru" onkeypress="return hanyaHuruf(event)" >
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                      <button type="submit" class="btn btn-primary">Ubah</button>
+                    </div>
+                </form>
               </div>
-              <div class="form-group">
-                <label for="recipient-name" class="col-form-label">Kode Guru:</label>
-                <input type="text" class="form-control" name="kode_guru" id="kode" readonly="">
-              </div>
-              <div class="form-group">
-                <label for="recipient-name" class="col-form-label">NIP:</label>
-                <input type="text" class="form-control" name="nip" id="nip">
-              </div>
-              <div class="form-group">
-                <label for="recipient-name" class="col-form-label">Nama:</label>
-                <input type="text" class="form-control" name="nama_guru" id="guru">
-              </div>
+            </div>
           </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-            <button type="submit" class="btn btn-primary">Ubah</button>
-          </div>
-      </form>
-    </div>
-  </div>
-</div>
 
 
             <br>

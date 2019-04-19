@@ -28,7 +28,20 @@ class SiswaController extends Controller
         $jurusans = Jurusan::all();
         $tahun = Tahun::all();
 
-        return view('siswas/index', compact('siswas', 'kelas','jurusans','tahun'));
+        $id_siswa = Siswa::select('kode_siswa')->whereRaw('id_siswa = (select max(`id_siswa`) from siswas) ')->first();
+        $kode = substr($id_siswa['kode_siswa'], 1,4);
+        $tambah = $kode+1;
+        if ($tambah<10) {
+            $id_siswa = "S000".$tambah;
+        } elseif ($tambah<100) {
+            $id_siswa = "S00".$tambah;
+        } elseif ($tambah<1000) {
+            $id_siswa = "S0".$tambah;
+        } else{
+            $id_siswa = "S".$tambah;
+        }
+
+        return view('siswas/index', compact('siswas', 'kelas','jurusans','tahun', 'id_siswa'));
     }
 
     /**

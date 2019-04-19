@@ -7,7 +7,7 @@ use App\Absen;
 <section role="main" class="content-body">
 
       <nav aria-label="breadcrumb">
-      <ol class="breadcrumb mt-3">
+      <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{ route('home') }}">Beranda</a></li>
         <li class="breadcrumb-item active" aria-current="page">Absensi</li>
       </ol>
@@ -32,10 +32,10 @@ use App\Absen;
             <h4>Data Absensi</h2>
         </div>
         <div class="card-body">
-            <a href="{{ route('absen.print') }}"><button class="btn btn-primary">Cetak Data Absen</button></a>
+            <a href="{{ route('absen.print') }}"><button class="btn btn-primary"><i class="fa fa-print"></i></button></a>
             <br>
             <br>
-            <table class="table table-bordered table-striped table-hover table-responsive" id="data-id">
+            <table class="table table-bordered table-striped table-hover table-responsive" id="data-id" width="100%">
                 <thead>
                     <tr> 
                         <th rowspan="2">No.</th>

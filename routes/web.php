@@ -32,6 +32,8 @@ Route::get('/akun/edit/{id}', 'AkunController@edit')->name('akun.edit');
 
 Route::post('/akun/update', 'AkunController@update')->name('akun.update');
 
+Route::post('/akun/kelola-akun', 'AkunController@updateakun')->name('akun.update-akun');
+
 Route::get('/akun/destroy/{id}', 'AkunController@destroy')->name('akun.destroy');
 
 

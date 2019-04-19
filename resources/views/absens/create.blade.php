@@ -61,7 +61,7 @@
                                 <td><input type="text" max="31" maxlength="3" style="text-align: center;" name="sakit" class="form-control" value="{{ $siswa->sakit }}" onkeypress="return hanyaAngka(event)"></td>
                                 <td><input type="text" max="31" maxlength="3" style="text-align: center;" name="izin" class="form-control" value="{{ $siswa->izin }}" onkeypress="return hanyaAngka(event)"></td>
                                 <td><input type="text" max="31" maxlength="3" style="text-align: center;" name="alpa" class="form-control" value="{{ $siswa->alpa }}" onkeypress="return hanyaAngka(event)"></td>
-                                <td><button     type="submit" class="btn btn-primary col-sm-12">Input</button></td>
+                                <td><button     type="submit" class="btn btn-primary col-sm-12"><i class="fa fa-save"></i></button></td>
 
                             </form>
                             </tr>

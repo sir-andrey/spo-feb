@@ -32,6 +32,8 @@
         <main>
             @yield('content')
         </main>
+
+     <script src="{{ asset('vendors/jquery/dist/jquery.min.js') }}"></script>   
     <!--===============================================================================================-->
     <script src="{{ asset('vendor/animsition/js/animsition.min.js') }}"></script>
 <!--===============================================================================================-->

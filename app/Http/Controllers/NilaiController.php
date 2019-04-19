@@ -19,18 +19,28 @@ class NilaiController extends Controller
 {
     public function index()
     {
-        
-        $id_user = Auth::user()->id;
+        if (Auth::user()->id_level != 3) {
+            # code...
+            $id_user = Auth::user()->id;
 
-        $guru = Guru::select('id_guru')->where('id_user', $id_user)->first();
+            $guru = Guru::select('id_guru')->where('id_user', $id_user)->first();
 
-        $id_guru = $guru['id_guru'];
+            $id_guru = $guru['id_guru'];
 
-        $mapel = Jadwal::select('id_mapel')->where('id_guru', $id_guru)->first();
+            $mapel = Jadwal::select('id_mapel')->where('id_guru', $id_guru)->first();
 
-        $id_mapel = $mapel['id_mapel'];
+            $id_mapel = $mapel['id_mapel'];
 
-        $datanilai = Nilai::select('id_siswa', 'id_mapel')->where('id_mapel', $id_mapel)->distinct()->get();
+            $datanilai = Nilai::select('id_siswa', 'id_mapel')->where('id_mapel', $id_mapel)->distinct()->get();
+        }else{
+            $id_user = Auth::user()->id;
+
+            $siswa = Siswa::where('id_user', $id_user)->first();
+
+            $id_siswa = $siswa['id_siswa'];
+
+            $datanilai = Nilai::select('id_mapel', 'id_siswa')->where('id_siswa', $id_siswa)->distinct()->get();
+        }
 
         $nilais = Nilai::all();
         $siswas = Siswa::all();
@@ -39,7 +49,7 @@ class NilaiController extends Controller
         $mapels = Mapel::all();
         $tahuns = Tahun::all();
 
-        return view('nilais/index', compact('datanilai','nilais', 'siswas', 'kelas','jurusan', 'mapels', 'tahuns'));
+        return view('nilais/index', compact('datanilai','nilais', 'siswas', 'kelas','jurusan', 'mapels', 'tahuns', 'siswa'));
     }
 
     /**
@@ -88,7 +98,7 @@ class NilaiController extends Controller
     public function store(Request $req)
     {
         $nilai = new Nilai;
-        $nilai->id_nilai = $req->id_nilai;
+        $nilai->id = $req->id;
         $nilai->nisn = $req->nisn;
         $nilai->nama = $req->nama;
         $nilai->id_kelas = $req->id_kelas;
@@ -130,8 +140,8 @@ class NilaiController extends Controller
      */
     public function update(Request $req)
     {
-        $nilai = Nilai::find($req->id_kelas);
-        $nilai->id = $req->id_nilai;
+        $nilai = Nilai::find($req->id);
+        $nilai->id = $req->id;
         $nilai->n1 = $req->n1;
         $nilai->n2 = $req->n2;
         $nilai->n3 = $req->n3;

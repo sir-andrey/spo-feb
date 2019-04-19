@@ -4,8 +4,60 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d660b1acf457d742342f328dac81db5b",
+    "content-hash": "a210feb3ba996700b475a3a943963b51",
     "packages": [
+        {
+            "name": "alfa6661/laravel-autonumber",
+            "version": "1.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/alfa6661/laravel-autonumber.git",
+                "reference": "f7e276f70adc1f0e171d6b84558d59eaf6dee95e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/alfa6661/laravel-autonumber/zipball/f7e276f70adc1f0e171d6b84558d59eaf6dee95e",
+                "reference": "f7e276f70adc1f0e171d6b84558d59eaf6dee95e",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/config": "^5.1|^5.2|^5.3|^5.4",
+                "illuminate/database": "^5.1|^5.2|^5.3|^5.4",
+                "illuminate/support": "^5.1|^5.2|^5.3|^5.4",
+                "php": ">=5.6.4 || ^7.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Alfa6661\\AutoNumber\\AutoNumberServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Alfa6661\\AutoNumber\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alfa Adhitya",
+                    "email": "alfa2159@gmail.com"
+                }
+            ],
+            "description": "Laravel package to create autonumber for Eloquent model",
+            "homepage": "https://github.com/alfa6661/laravel-autonumber",
+            "keywords": [
+                "autonumber",
+                "eloquent",
+                "laravel"
+            ],
+            "time": "2018-11-30T16:17:24+00:00"
+        },
         {
             "name": "barryvdh/laravel-dompdf",
             "version": "v0.8.4",

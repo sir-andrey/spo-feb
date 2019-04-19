@@ -17,18 +17,20 @@
             <h4>Cari</h4>
         </div>
         <div class="card-body">
-            <form action="{{ url()->current() }}">
-                <div class="form-group col-md-3">
-                    <label for="">Semester</label>
-                    <select name="semester" id="" class="form-control">
-                        <option value="Genap">Genap</option>
-                        <option value="Ganjil">Ganjil</option>
-                    </select>
-                </div>
-                <div class="form-group col-md-3">
-                    <button type="submit" class="btn btn-primary">Cari</button>
-                </div>
-            </form>
+            <div class="col-md-12">   
+                <form action="{{ url()->current() }}">
+                    <div class="form-group">
+                        <label for="">Semester</label>
+                        <select name="semester" id="" class="form-control col-md-3">
+                            <option value="Genap">Genap</option>
+                            <option value="Ganjil">Ganjil</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Cari</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </section>    
     <section class="card mt-3">
@@ -50,9 +52,6 @@
             <h4>Data Nilai</h2>
         </div>
         <div class="card-body">
-            <a href="{{ route('nilai.print') }}"><button class="btn btn-primary">Cetak Data Nilai</button></a>
-            <br>
-            <br>
             <table class="table table-bordered table-striped table-hover" id="data-id" width="100%">
                 <thead>
                     <tr> 
@@ -79,12 +78,12 @@
                             <tr>
                                 <form role="form" action="{{ route('nilai.update') }}" method="POST">
                                 @csrf
-                                <td>{{ $key+1 }}<input type="hidden" name="id_nilai" value="{{ $siswa->id_mapel }}"></td>
+                                <td>{{ $key+1 }}<input type="hidden" name="id" value="{{ $siswa->id_mapel }}"></td>
                                 <td>{{ $siswa->siswa->nisn }}</td>
                                 <td>{{ $siswa->siswa->nama_siswa }}</td>
                                 <td>{{ $siswa->mapel->nama_mapel }}</td>
                                 @if($siswa->n1 == NULL)
-                                <td><input type="text" style="text-align: center;" name="n1" class="form-control" value="{{ $siswa->n1 }}" onkeypress="return hanyaAngka(event)" maxlength="3"></td>
+                                <td><input type="text" style="text-align: center;" name="n1" class="form-control" value="{{ $siswa->n1 }}" maxlength="3"></td>
                                 @else
                                 <td style="text-align: center;">{{ $siswa->n1 }} <input type="hidden" name="n1" value="{{ $siswa->n1 }}"></td>
                                 @endif
@@ -118,13 +117,10 @@
                                 @else
                                 <td></td>
                                 @endif
-                                <td><button type="submit" class="btn btn-primary col-sm-12">Edit</button></td>
-
-                            
+                                <td><button type="submit" class="btn btn-primary col-sm-12"><i class="fa fa-save"></i></button></td>
+                            </form>
                             </tr>
                         @endforeach
-                        <button type="submit">Input</button>
-                        </form>
                     @elseif ( Auth::user()->id_level == 4 )
                         @foreach( $datanilai as $key => $siswa )
                             <tr>

@@ -10,6 +10,7 @@ use App\Siswa;
 use App\Jadwal;
 use App\Walikelas;
 use DB;
+use Auth;
 use Illuminate\Support\Facades\Hash;
 
 class AkunController extends Controller
@@ -61,11 +62,9 @@ class AkunController extends Controller
     public function store(Request $req)
     {
         if ($req->id_level == 2 || $req->id_level == 4) {
-            
-            $jadwal = Jadwal::select('id_jadwal')->where('id_guru', $req->id)->first();
+
             $guru = Guru::select('nama_guru')->where('id_guru', $req->id)->first();
             $nama = $guru['nama_guru'];
-            $id_jadwal = $jadwal['id_jadwal'];
         } else{
             $siswa = Siswa::select('nama_siswa')->where('id_siswa', $req->id)->first();
             $nama = $siswa['nama_siswa'];
@@ -78,19 +77,28 @@ class AkunController extends Controller
         $akun->email = $req->email;
         $akun->password = Hash::make($req->password);
         $akun->id_level = $req->id_level;
-        $akun->id_jadwal = $id_jadwal;
         $akun->save();
 
         if ($req->id_level == 4) {
             
             $akun_id = User::select('id')->whereRaw('id = (select max(`id`) from users)')->first();
-            $guru = Guru::select('nama_guru')->where('id_guru', $req->id)->first();
 
-            $
-
-            $walikelas = new Walikelas;
+            $walikelas = Walikelas::find($req->id);
             $walikelas->id_user = $akun_id;
+            $walikelas->save();
 
+        } elseif ($req->id_level == 2) {
+            $akun_id = User::select('id')->whereRaw('id = (select max(`id`) from users)')->first();
+
+            $guru = Guru::find($req->id);
+            $guru->id_user = $akun_id['id'];
+            $guru->save();
+        } elseif ($req->id_level == 3) {
+            $akun_id = User::select('id')->whereRaw('id = (select max(`id`) from users)')->first();
+
+            $siswa = Siswa::find($req->id);
+            $siswa->id_user = $akun_id['id'];
+            $siswa->save();
         }
             session()->flash('success-create', 'Data Akun berhasil disimpan');
             return redirect('/akun/index');
@@ -113,9 +121,10 @@ class AkunController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit()
     {
-        $akun = User::all();
+        $id = Auth::user()->id;
+        $akun = User::find($id);
         $siswa = Siswa::all();
         $guru = Guru::all(); 
         $level = Level::all();
@@ -131,6 +140,21 @@ class AkunController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function updateakun(Request $req)
+    {
+        $akun = User::find($req->id);
+        $passold = $akun->password;
+        if ($req->password != $req->password1) {
+            session()->flash('failed-create', 'Password tidak sama');
+            return redirect()->back();
+        } else{
+            $akun->password = Hash::make($req->password);
+            $akun->save();
+            session()->flash('success-create', 'Password berhasil diubah');
+            return redirect()->back();
+        }
+    }
+
     public function update(Request $req)
     {
         $akun = User::find($req->id);
@@ -138,7 +162,6 @@ class AkunController extends Controller
         $akun->username = $req->username;
         $akun->email = $req->email;
         $akun->id_level = $req->id_level;
-        $akun->id_jadwal = $req->id_jadwal;
   
         $akun->save();
 
@@ -153,7 +176,7 @@ class AkunController extends Controller
      */
     public function destroy($id)
     {
-        $akun = Akun::find($id);
+        $akun = User::find($id);
         $akun->delete();
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
         return redirect()->back();

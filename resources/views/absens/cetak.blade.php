@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Report Data Siswa</title>
+    <title>Laporan Data Absen</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
     <script src="main.js"></script>
@@ -38,7 +38,7 @@
     <p><img src="c:/image/jabar1.png" width="100px" height="100px" style="float:right;">
     <p align="center">PEMERINTAH PROVINSI JAWA BARAT<br>
         DINAS PENDIDIKAN<br>
-        <strong>Laporan Data Siswa </strong> <br>
+        <strong>Laporan Data Absen </strong> <br>
         SMK NEGERI 2 CIMAHI<br>
 
         JL. Kamarung KM. 1,5 No. 69 , RT/RW 2/5, Dsn. -,
@@ -46,15 +46,17 @@
         <b>Telepon :</b> 022-6656088    <b>Fax :</b> 022-66560         <b>Email :</b> smkn2cmi@yahoo.com        <b>Website :</b> http://smkn2cmi.sch.id</p>
     <hr />
     <br>
-    <p align="center" ><strong> Data Siswa </strong></p>
+    <p align="center" ><strong> Data Absen </strong></p>
     <table class="styletable">
         <thead>
         <tr>
-            <th> No </th>
-            <th> NISN </th>
-            <th> Nama </th>
-            <th> Kelas </th>
-            <th> Tahun Ajaran </th>
+            <th rowspan="2"> No </th>
+            <th rowspan="2"> Nama </th>
+            <th rowspan="2"> Kelas </th>
+             <th colspan="3" style="text-align: center;">{{ $bulan }} {{ date('Y') }}</th>
+            <th rowspan="2">Sakit</th>
+            <th rowspan="2">Alpa</th>
+            <th rowspan="2">Izin</th>
         </tr>
         </thead>
         <tbody>

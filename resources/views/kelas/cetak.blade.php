@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Report Kelas</title>
+    <title>Laporan Data Kelas</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
     <script src="main.js"></script>
@@ -23,7 +23,7 @@
         tr:nth-child(even){background-color: #f2f2f2}
 
         th {
-            background-color: #0000ff;
+            background-color: #595959;
             color: white;
         }
         h3 {
@@ -34,11 +34,11 @@
 </head>
 <body>
 <div class="head">
-    <p><img src="c:/image/smkn2.png" width="100px" height="100px" style="float:left;">
-    <p><img src="c:/image/jabar1.png" width="100px" height="100px" style="float:right;">
+    <p><img src="c:/image/smkn2.png" width="92px" height="100px" style="float:left;">
+    <p><img src="c:/image/jabar1.png" width="156px" height="100px" style="float:right;">
     <p align="center">PEMERINTAH PROVINSI JAWA BARAT<br>
         DINAS PENDIDIKAN<br>
-        <strong>Laporan Data Kelas</strong> <br>
+        <strong>Laporan Data Level</strong> <br>
         SMK NEGERI 2 CIMAHI<br>
 
         JL. Kamarung KM. 1,5 No. 69 , RT/RW 2/5, Dsn. -,

@@ -13,10 +13,10 @@
                     </span>
                     
                     
-                    <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-                        <input class="input100" type="text" name="email">
+                    <div class="wrap-input100 validate-input" data-validate = "Valid email is required">
+                        <input class="input100" type="text" name="email" placeholder="masukan email">
                         <span class="focus-input100"></span>
-                        <span class="label-input100">Email</span>
+                        <span class="label-input100"></span>
                         @if ($errors->has('email'))
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $errors->first('email') }}</strong>
@@ -26,9 +26,9 @@
                     
                     
                     <div class="wrap-input100 validate-input" data-validate="Password is required">
-                        <input class="input100" type="password" name="password">
+                        <input class="input100" type="password" name="password" placeholder="masukan password">
                         <span class="focus-input100"></span>
-                        <span class="label-input100">Password</span>
+                        <span class="label-input100"></span>
                         @if ($errors->has('password'))
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $errors->first('password') }}</strong>

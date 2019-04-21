@@ -96,7 +96,7 @@
             <div class="modal-body">
                <div class="form-group">
                   <label for="recipient-name" class="col-form-label">Kode Jurusan:</label>
-                  <input type="text" class="form-control" name="kode_jurusan" id="kode_jurusan" maxlength="5">
+                  <input type="text" class="form-control" name="kode_jurusan" id="kode_jurusan" value="{{ $id_jurusan }}" maxlength="5" readonly>
                </div>
                <div class="form-group">
                   <label for="recipient-name" class="col-form-label">Jurusan:</label>

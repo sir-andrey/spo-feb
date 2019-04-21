@@ -60,7 +60,7 @@
                         <th rowspan="2">Nama</th>
                         <th rowspan="2">Mapel</th>
                         <th colspan="6" style="text-align: center;">Semester</th>
-                    <th rowspan="2">#</th>
+                        <th rowspan="2">#</th>
                     </tr>
                     <tr>
                         <th>N1</th>
@@ -83,13 +83,13 @@
                                 <td>{{ $siswa->siswa->nama_siswa }}</td>
                                 <td>{{ $siswa->mapel->nama_mapel }}</td>
                                 @if($siswa->n1 == NULL)
-                                <td><input type="text" style="text-align: center;" name="n1" class="form-control" value="{{ $siswa->n1 }}" maxlength="3"></td>
+                                <td><input type="text" style="text-align: center;" name="n1" class="form-control" value="{{ $siswa->n1 }}" maxlength="3" max="100" id="numberbox"></td>
                                 @else
                                 <td style="text-align: center;">{{ $siswa->n1 }} <input type="hidden" name="n1" value="{{ $siswa->n1 }}"></td>
                                 @endif
 
                                 @if($siswa->n2 == NULL)
-                                <td><input type="text" style="text-align: center;" name="n2" class="form-control" value="{{ $siswa->n2 }}" onkeypress="return hanyaAngka(event)" maxlength="3"></td>
+                                <td><input type="text" style="text-align: center;" name="n2" class="form-control" value="{{ $siswa->n2 }}" onkeypress="return hanyaAngka(event)" maxlength="3" max="100"></td>
                                 @else
                                 <td style="text-align: center;">{{ $siswa->n2 }} <input type="hidden" name="n2" value="{{ $siswa->n2 }}"></td>
                                 @endif

@@ -95,7 +95,7 @@
             <div class="modal-body">
                <div class="form-group">
                   <label for="recipient-name" class="col-form-label">Kode Tahun:</label>
-                  <input type="text" class="form-control" name="kode_tahun" id="kode">
+                  <input type="text" class="form-control" name="kode_tahun" id="kode" value="{{ $id_tahun }}" maxlength="5" readonly>
                </div>
                <div class="form-group">
                   <label for="recipient-name" class="col-form-label">Tahun:</label>

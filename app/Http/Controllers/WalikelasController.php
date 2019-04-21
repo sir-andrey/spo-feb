@@ -8,6 +8,7 @@ use App\Guru;
 use App\Kelas;
 use App\Jurusan;
 use App\Tahun;
+use App\Jadwal;
 use DB;
 use Response;
 use PDF;
@@ -21,13 +22,15 @@ class WalikelasController extends Controller
      */
     public function index()
     {
-        $walikelas = Walikelas::all();
+        $walikelass = Walikelas::all();
         $gurus = Guru::all();
         $kelas = Kelas::all();
         $jurusans = Jurusan::all();
-        $tahuns = Tahun::all();
+        $tahun = Tahun::all();
+        $jadwal = Jadwal::all();
 
-        return view('walikelas/index', compact('walikelas', 'gurus','kelas','jurusans','tahuns'));
+
+        return view('walikelas/index', compact('walikelass', 'gurus','kelas','jurusans','tahun', 'jadwal'));
     }
 
     /**
@@ -55,7 +58,7 @@ class WalikelasController extends Controller
     {
         $walikelas = new Walikelas;
         $walikelas->id_guru = $req->id_guru;
-        $siswa->id_kelas = $req->id_kelas;
+        $walikelas->id_kelas = $req->id_kelas;
 
         $guru = DB::table('walikelas')->where('id_guru', $req->id_guru)->get();
         $count_guru = count($guru);
@@ -67,7 +70,7 @@ class WalikelasController extends Controller
             return redirect()->back();
         } else {
 
-            $siswa->save();
+            $walikelas->save();
 
             session()->flash('success-create', 'Data berhasil disimpan');
             return redirect('/walikelas/index');

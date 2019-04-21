@@ -9,10 +9,35 @@ use App\Nilai;
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb mt-3">
             <li class="breadcrumb-item"><a href="{{ route('home') }}">Beranda</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('nilai.index') }}">Data Nilai</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Penilaian</li>
+            <li class="breadcrumb-item active" aria-current="page">Data Nilai</li>
         </ol>
     </nav>
+
+    <section class="card mt-3">
+        <div class="card-header">
+            <h4>Cari</h4>
+        </div>
+        <div class="card-body">
+            <div class="col-md-12">   
+                <form action="{{ url()->current() }}">
+                    <div class="form-group">
+                        <label class="control-label" for="name">Kelas</label>
+                        <div >
+                            <select name="id_kelas" id="kelas" class="form-control" width="20%">
+                                <option value="">-- Pilih Kelas --</option>
+                                @foreach ($kelas as $datas)
+                                <option value="{{ $datas->id_kelas }}">{{ $datas->tingkat }} {{ $datas->jurusan->nama_jurusan }} {{ $datas->kelas }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>    
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Cari</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
 
     <section class="card mt-3">
         @if(session()->has('success-create'))

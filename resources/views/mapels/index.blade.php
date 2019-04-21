@@ -101,7 +101,7 @@
             <div class="modal-body">
                <div class="form-group">
                   <label for="recipient-name" class="col-form-label">Kode Mapel<span class="required">*</span></label>
-                  <input type="text" class="form-control" name="kode_mapel" id="kode" maxlength="5">
+                  <input type="text" class="form-control" name="kode_mapel" id="kode" value="{{ $id_mapel }}" maxlength="5" readonly>
                </div>
                <div class="form-group">
                   <label for="recipient-name" class="col-form-lab">Mata Pelajaran<span class="required">*</span></label>

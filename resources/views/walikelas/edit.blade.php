@@ -49,23 +49,39 @@
                 @csrf
                     <div class="col-md-6">
         
-                        <input type="hidden" name="id_tahun" value="{{ $tahun->id_tahun }}">
                         <div class="form-group">
-                            <label class="col-md-3 control-label">Kode Tahun<span class="required">*</span></label>
-                            <div class="col-md-7">
-                                <input type="text" class="form-control" name="kode_tahun" value="{{ $tahun->kode_tahun }}" maxlength="5" readonly="true" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-md-3 control-label">Tahun Ajaran <span class="required">*</span></label>
-                            <div class="col-md-7">
-                                <input type="text" class="form-control" name="tahun" value="{{ $tahun->tahun }}"/>
-                            </div>
-                        </div>
-                                    
-                        <div class="form-group" style="margin-left: 230px;">
-                            <button type="submit" class="btn btn-primary">Edit</button>
-                        </div> 
+                  <label for="recipient-name" class="col-form-label">Guru:</label>
+                  <select class="js-example-basic-single col-md-12" name="id_guru" data-show-subtext="true">
+                     <option value="">-- Cari -- </option>
+                     <optgroup label="Guru">
+                        @foreach( $jadwal as $dataguru )
+                        <option value="{{ $dataguru->id_guru }}">{{ $dataguru->guru->nama_guru }} ({{ $dataguru->mapel->nama_mapel }})</option>
+                        @endforeach
+                     </optgroup> 
+                  </select>
+               </div>
+               <div class="form-group">
+                  <label class="control-label">Tahun Ajaran <span class="required">*</span></label>
+                  <div class="">
+                     <select name="id_tahun" id="tahun" class="form-control">
+                        <option value="">-- Pilih Tahun --</option>
+                        @foreach ($tahun as $data)
+                           <option value="{{ $data->id_tahun }}">{{ $data->tahun }}</option>
+                        @endforeach
+                     </select>
+                  </div>
+               </div>
+               <div class="form-group">
+                  <label class="control-label">Kelas <span class="required">*</span></label>
+                  <div class="">
+                     <select name="id_kelas" id="kelas" class="form-control">
+                        <option value="">-- Pilih Tahun terlebih dahulu --</option>
+                        @foreach ($kelas as $datas)
+                           <option value="{{ $datas->id_kelas }}" class="{{ $datas->id_tahun }}">{{ $datas->tingkat }} {{ $datas->jurusan->nama_jurusan }} {{ $datas->kelas }}</option>
+                        @endforeach
+                        </select>
+                  </div>
+               </div>
                     </div>
              </form>
 

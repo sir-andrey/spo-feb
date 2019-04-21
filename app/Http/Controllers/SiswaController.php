@@ -70,6 +70,12 @@ class SiswaController extends Controller
         $siswa->kode_siswa = $req->kode_siswa;
         $siswa->nisn = $req->nisn;
         $siswa->nama_siswa = $req->nama_siswa;
+        $siswa->jk = $req->jk;
+        $siswa->tempat_lahir = $req->tempat_lahir;
+        $siswa->tanggal_lahir = $req->tanggal_lahir;
+        $siswa->agama = $req->agama;
+        $siswa->alamat = $req->alamat;
+        $siswa->no_telp = $req->no_telp;
 
         $siswa->id_kelas = $req->id_kelas;
 
@@ -79,7 +85,7 @@ class SiswaController extends Controller
         $count_kode_siswa = count($kode_siswa);
 
         if ($count_nisn > 0 || $count_kode_siswa > 0){
-            session()->flash('failed-create', 'Data Kode atau NISN siswa tersebut sudah ada');
+            session()->flash('failed-create', 'Data siswa tersebut sudah ada');
             return redirect()->back();
         } else {
 
@@ -87,7 +93,7 @@ class SiswaController extends Controller
 
             $id_siswa = Siswa::all();
 
-            $count_id = count($id_siswa);
+            $siswa_id = Siswa::select('id_siswa')->whereRaw('id_siswa = (select max(`id_siswa`) from siswas)')->first();
 
             $mapel = Mapel::all();
             $count_mapel = count($mapel);
@@ -95,14 +101,14 @@ class SiswaController extends Controller
             for ($i=1; $i <= $count_mapel; $i++) { 
                 $nilai = new Nilai;
                 $nilai->kode_nilai = "09839";
-                $nilai->id_siswa = $count_id;
+                $nilai->id_siswa = $siswa_id['id_siswa'];
                 $nilai->id_mapel = $i;
                 $nilai->semester = "Ganjil";
                 $nilai->save();
 
                 $nilai = new Nilai;
                 $nilai->kode_nilai = "19839";
-                $nilai->id_siswa = $count_id;
+                $nilai->id_siswa = $siswa_id['id_siswa'];
                 $nilai->id_mapel = $i;
                 $nilai->semester = "Genap";
                 $nilai->save();
@@ -129,7 +135,7 @@ class SiswaController extends Controller
                 $jatuhtempo = date("Y-m-d", strtotime("+$a month", strtotime($awaltempo)));
 
                 $absen = new Absen;
-                $absen->id_siswa = $count_id;
+                $absen->id_siswa = $siswa_id['id_siswa'];
                 $absen->bulan = $bulanIndo[date('m', strtotime($jatuhtempo))];
                 $absen->id_kelas = $req->id_kelas;
                 $absen->save();
@@ -177,6 +183,12 @@ class SiswaController extends Controller
         $siswa->id_siswa = $req->id_siswa;
         $siswa->nisn = $req->nisn;
         $siswa->nama = $req->nama;
+        $siswa->jk = $req->jk;
+        $siswa->tempat_lahir = $req->tempat_lahir;
+        $siswa->tanggal_lahir = $req->tanggal_lahir;
+        $siswa->agama = $req->agama;
+        $siswa->alamat = $req->alamat;
+        $siswa->no_telp = $req->no_telp;
         $siswa->id_kelas = $req->id_kelas;
         
         $siswa->save();

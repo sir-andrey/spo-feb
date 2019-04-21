@@ -26,7 +26,21 @@ class JadwalController extends Controller
         $tahuns = Tahun::get();
         $jadwals = Jadwal::all();
 
-        return view('jadwals/index', compact('jadwals','mapels','kelas','gurus','tahuns'));
+         $id_jadwal = Jadwal::select('kode_jadwal')->whereRaw('id_jadwal = (select max(`id_jadwal`) from jadwals) ')->first();
+        $kode = substr($id_jadwal['kode_jadwal'], 1,4);
+        $tambah = $kode+1;
+        if ($tambah<100) {
+            $id_jadwal = "JP000".$tambah;
+        } elseif ($tambah<1000) {
+            $id_jadwal = "JP00".$tambah;
+        } elseif ($tambah<10000) {
+            $id_jadwal = "JP0".$tambah;
+        } else{
+            $id_jadwal = "JP".$tambah;
+        }
+
+
+        return view('jadwals/index', compact('jadwals','mapels','kelas','gurus','tahuns','id_jadwal'));
     }
 
     /**

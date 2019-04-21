@@ -20,6 +20,12 @@ class CreateGurusTable extends Migration
             $table->string('kode_guru',5)->unique();
             $table->char('nip');
             $table->string('nama_guru',50)->unique();
+            $table->enum('jk', array('Laki Laki', 'Perempuan'));
+            $table->string('tempat_lahir',30);
+            $table->date('tanggal_lahir');
+            $table->enum('agama', array('Buddha', 'Hindu','Islam','Katolik','Kong Hu Cu','Protestan'))->nullable();
+            $table->string('alamat',200);
+            $table->string('no_telp',50);
         
             $table->timestamps();
         });

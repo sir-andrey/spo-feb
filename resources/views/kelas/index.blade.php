@@ -99,12 +99,18 @@
             <div class="modal-body">
                <div class="form-group">
                   <label for="recipient-name" class="col-form-label">Kode Kelas:</label>
-                  <input type="text" class="form-control" name="kode_kelas" id="kode" maxlength="5">
+                  <input type="text" class="form-control" name="kode_kelas" id="kode" maxlength="5" value="{{ $id_kelas }}" readonly>
                </div>
-               <div class="form-group">
-                  <label for="recipient-name" class="col-form-label">Tingkat:</label>
-                  <input type="text" class="form-control" name="tingkat" maxlength="4" placeholder="Contoh : X/XI/XII/XIII" id="tingkat" required="" maxlength="4" onkeypress="return hanyaHuruf(event)" >
-               </div>
+                 <div class="form-group">
+                     <label for="recipient-name" class="control-label">Tingkat <span >*</span></label>
+                     <select data-plugin-selectTwo name="tingkat" class="form-control" id="tingkat">
+                        <option value="">-- Pilih Tingkat --</option>
+                        <option value="X">X</option>
+                        <option value="XI">XI</option>
+                        <option value="XII">XII</option>
+                        <option value="XIII">XIII</option>
+                     </select>
+                  </div>  
                <div class="form-group">
                   <label for="recipient-name" class="control-label">Jurusan <span class="required">*</span></label>
                   <select data-plugin-selectTwo name="id_jurusan" class="form-control" id="jurusan">

@@ -96,7 +96,7 @@
             <div class="modal-body">
                <div class="form-group">
                   <label for="recipient-name" class="col-form-label">Kode Level:</label>
-                  <input type="text" class="form-control" name="kode_level" id="kode" maxlength="5">
+                  <input type="text" class="form-control" name="kode_level" id="kode" readonly=""  value="{{ $id_level }}">
                </div>
                <div class="form-group">
                   <label for="recipient-name" class="col-form-label">Level:</label>

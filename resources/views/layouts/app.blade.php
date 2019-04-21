@@ -38,6 +38,9 @@
     <link rel="stylesheet" href="{{ asset('vendors/selectFX/css/cs-skin-elastic.css') }}">
     <link rel="stylesheet" href="{{ asset('vendors/jqvmap/dist/jqvmap.min.css') }}">
 
+    <link rel="stylesheet" href="{{ asset('vendors/datatables.net-bs4/css/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendors/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css') }}">
+
 
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
@@ -169,25 +172,23 @@
     <!-- Right Panel -->
 
     <script src="{{ asset('vendors/jquery/dist/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/datatables.js') }}"></script>
+    <script src="{{ asset('js/datatables.min.js') }}"></script>
+    <script src="{{ asset('vendor/jquery-chained/jquery.chained.js') }}"></script>
+    <script src="{{ asset('vendors/jquery/dist/jquery.inputmask.bundle.min.js') }}"></script>
+    <script src="{{ asset('vendor/jquery/jquery-input-mask-phone-number.js') }}"></script>
     <script src="{{ asset('vendors/popper.js/dist/umd/popper.min.js') }}"></script>
     <script src="{{ asset('vendors/bootstrap/dist/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/main.js') }}"></script>
-
-    <!-- Vendor JavaScript -->
     <script src="{{ asset('vendor/select2/dist/js/select2.min.js') }}"></script>
-    <script src="{{ asset('vendor/datatables/js/datatables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('vendor/fontawesome/js/all.min.js') }}"></script>
     <script src="{{ asset('vendor/buttons/js/buttons.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('vendor/responsive/js/responsive.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('vendor/scroller/js/scroller.bootstrap4.min.js') }}"></script>
-    <script src="{{ asset('vendor/jquery-chained/jquery.chained.js') }}"></script>
-
     <script src="{{ asset('vendors/chart.js/dist/Chart.bundle.min.js') }}"></script>
     <script src="{{ asset('js/dashboard.js') }}"></script>
     <script src="{{ asset('js/widgets.js') }}"></script>
-    <script src="{{ asset('vendors/jqvmap/dist/jquery.vmap.min.js') }}"></script>
-    <script src="{{ asset('vendors/jqvmap/examples/js/jquery.vmap.sampledata.js') }}"></script>
-    <script src="{{ asset('vendors/jqvmap/dist/maps/jquery.vmap.world.js') }}"></script>
+
 
     <!-- jQuery AIO solver -->
     <script>
@@ -199,6 +200,30 @@
         $(document).ready(function() {
             $('.js-example-basic-single').select2();
         });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $('#data-id').DataTable({
+                "scrollX": true,
+                "aLengthMenu": [[10, 25, 50, 100, 250, 500, -1], [10, 25, 50, 100, 250, 500, 'All']],
+                "oLanguage": { 
+                    "sInfo": 'Total _TOTAL_ data ditampilkan (_START_ sampai _END_)',
+                    "sLengthMenu": 'Tampilkan _MENU_ data',   
+                    "sInfoEmpty": 'Tidak ada data.',
+                    "sSearch": 'Pencarian:',
+                    "sEmptyTable": 'Tidak ada data di dalam Database',
+                    "oPaginate": {
+                        "sNext": 'Selanjutnya',
+                        "sLast": 'Terakhir',
+                        "sFirst": 'Pertama',
+                        "sPrevious": 'Sebelumnya'
+                    }
+                }
+            });
+        });
+
+        
     </script>
 
     <!-- Chained Script -->
@@ -349,6 +374,14 @@
               var kode = button.data('kode') 
               var id = button.data('id') 
               var nisn = button.data('nisn') 
+              var tempat = button.data('tempat') 
+              var tanggal = button.data('tanggal') 
+              var alamat = button.data('alamat') 
+              var no_telp = button.data('no_telp') 
+              var jk = button.data('jk') 
+              var agama = button.data('agama') 
+
+
               var modal = $(this)
 
 
@@ -358,6 +391,12 @@
               modal.find('.modal-body #kode').val(kode);
               modal.find('.modal-body #nama').val(nama);
               modal.find('.modal-body #nisn').val(nisn);
+              modal.find('.modal-body #tempat').val(tempat);
+              modal.find('.modal-body #tanggal').val(tanggal);
+              modal.find('.modal-body #alamat').val(alamat); 
+              modal.find('.modal-body #no_telp').val(no_telp);
+              modal.find('.modal-body #jk').val(jk);
+              modal.find('.modal-body #agama').val(agama);
               
         })
         });
@@ -404,6 +443,24 @@
     </script>
 
     <script>
+      $(document).ready(function() {
+        $('#editWalikelas').on('show.bs.modal', function (event) {
+              var button = $(event.relatedTarget) 
+              var nama = button.data('nama') 
+              var id = button.data('id') 
+              var modal = $(this)
+
+
+
+              console.log = ('Modal');
+              modal.find('.modal-body #id').val(id);
+              modal.find('.modal-body #nama').val(nama);
+              
+        })
+        });
+    </script>
+
+    <script>
       function hanyaAngka(evt) {
         var charCode = (evt.which) ? evt.which : event.keyCode
          if (charCode > 31 && (charCode < 48 || charCode > 57))
@@ -420,6 +477,24 @@
             return false;
         return true;
       }
+    </script>
+
+    <script>
+      $(document).ready(function () {
+        $('#numberbox').keyup(function(){
+            if ($(this).val() > 100){
+              alert("Maksimal Nilai 100");
+              $(this).val('100');
+            }
+        });
+      });
+    </script>
+
+
+    <script>
+      $(document).ready(function () {
+        $('#cc').inputmask("9999-9999-9999");
+      });
     </script>
 
 

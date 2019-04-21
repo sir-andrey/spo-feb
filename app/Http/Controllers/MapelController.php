@@ -20,7 +20,21 @@ class MapelController extends Controller{
         $mapel = Mapel::all();
         $jurusan = Jurusan::all();
 
-        return view('mapels/index', compact('mapel','jurusan'));
+        $id_mapel = Mapel::select('kode_mapel')->whereRaw('id_mapel = (select max(`id_mapel`) from mapels) ')->first();
+        $kode = substr($id_mapel['kode_mapel'], 1,4);
+        $tambah = $kode+1;
+        if ($tambah<10) {
+            $id_mapel = "M000".$tambah;
+        } elseif ($tambah<100) {
+            $id_mapel = "M00".$tambah;
+        } elseif ($tambah<1000) {
+            $id_mapel = "M0".$tambah;
+        } else{
+            $id_mapel = "M".$tambah;
+        }
+
+
+        return view('mapels/index', compact('mapel','jurusan','id_mapel'));
     }
 
     /**

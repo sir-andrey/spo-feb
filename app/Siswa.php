@@ -14,6 +14,12 @@ class Siswa extends Model
         'kode_siswa',
     	'nisn',
     	'nama_siswa',
+        'jk',
+        'tempat_lahir',
+        'tanggal_lahir',
+        'agama',
+        'alamat',
+        'no_telp',
     	'id_kelas',
     ];
 

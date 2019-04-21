@@ -18,7 +18,20 @@ class LevelController extends Controller
     {
         $levels = Level::all();
 
-        return view('levels/index', compact('levels'));
+        $id_level = Level::select('kode_level')->whereRaw('id_level = (select max(`id_level`) from levels) ')->first();
+        $kode = substr($id_level['kode_level'], 1,4);
+        $tambah = $kode+1;
+        if ($tambah<10) {
+            $id_level = "L000".$tambah;
+        } elseif ($tambah<100) {
+            $id_level = "L00".$tambah;
+        } elseif ($tambah<1000) {
+            $id_level = "L0".$tambah;
+        } else{
+            $id_level = "L".$tambah;
+        }
+
+        return view('levels/index', compact('levels','id_level'));
     }
 
     /**

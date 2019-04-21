@@ -18,7 +18,20 @@ class JurusanController extends Controller
     {
         $jurusans = Jurusan::all();
 
-        return view('jurusans/index', compact('jurusans'));
+        $id_jurusan = Jurusan::select('kode_jurusan')->whereRaw('id_jurusan = (select max(`id_jurusan`) from jurusans) ')->first();
+        $kode = substr($id_jurusan['kode_jurusan'], 1,4);
+        $tambah = $kode+1;
+        if ($tambah<10) {
+            $id_jurusan = "J000".$tambah;
+        } elseif ($tambah<100) {
+            $id_jurusan = "J00".$tambah;
+        } elseif ($tambah<1000) {
+            $id_jurusan = "J0".$tambah;
+        } else{
+            $id_jurusan = "J".$tambah;
+        }
+
+        return view('jurusans/index', compact('jurusans','id_jurusan'));
     }
 
     /**

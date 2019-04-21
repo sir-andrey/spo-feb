@@ -22,7 +22,7 @@ class AkunController extends Controller
      */
     public function index()
     {
-       $akuns = User::all();
+        $akuns = User::all();
         $siswa = Siswa::all();
         $guru = Guru::all(); 
         $level = Level::all();

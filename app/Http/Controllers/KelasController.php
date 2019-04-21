@@ -21,7 +21,20 @@ class KelasController extends Controller
         $kelas = Kelas::all();
         $jurusan = Jurusan::all(); 
         $tahun = Tahun::all(); 
-        return view('kelas/index', compact('kelas','jurusan','tahun'));
+
+        $id_kelas = Kelas::select('kode_kelas')->whereRaw('id_kelas = (select max(`id_kelas`) from kelas) ')->first();
+        $kode = substr($id_kelas['kode_kelas'], 1,4);
+        $tambah = $kode+1;
+        if ($tambah<10) {
+            $id_kelas = "K000".$tambah;
+        } elseif ($tambah<100) {
+            $id_kelas = "K00".$tambah;
+        } elseif ($tambah<1000) {
+            $id_kelas = "K0".$tambah;
+        } else{
+            $id_kelas = "K".$tambah;
+        }
+        return view('kelas/index', compact('kelas','jurusan','tahun','id_kelas'));
     }
 
     /**

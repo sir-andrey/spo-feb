@@ -49,7 +49,7 @@ class NilaiController extends Controller
         $mapels = Mapel::all();
         $tahuns = Tahun::all();
 
-        return view('nilais/index', compact('datanilai','nilais', 'siswas', 'kelas','jurusan', 'mapels', 'tahuns', 'siswa'));
+        return view('nilais/index', compact('datanilai','nilais', 'siswas', 'kelas','jurusan', 'mapels', 'tahuns', 'siswas'));
     }
 
     /**

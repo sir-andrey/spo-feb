@@ -51,7 +51,7 @@
          <a href="{{ route('jadwal.print') }}"><button class="btn btn-primary"><i class="fa fa-print"></i></button></a>                     
          <br>
          <br>
-         <table class="table table-bordered table-striped table-hover " id="data-id">
+         <table class="table table-bordered table-striped table-hover " id="data-id" width="100%">
             <thead>
                <tr> 
                   <th style="text-align: center;">No</th>
@@ -103,8 +103,8 @@
             @csrf
             <div class="modal-body">
                <div class="form-group">
-                  <label for="name">ID Jadwal :</label>
-                  <input type="text" class="form-control" name="kode_jadwal" id="kode" />
+                  <label for="name">Kode Jadwal :</label>
+                  <input type="text" class="form-control" name="kode_jadwal" id="kode" value="{{ $id_jadwal }}" maxlength="5" readonly />
                </div>
                <div class="form-group">
                   <label>Guru : </label><br>

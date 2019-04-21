@@ -23,7 +23,7 @@
         tr:nth-child(even){background-color: #f2f2f2}
 
         th {
-            background-color: #0000ff;
+            background-color: #595959;
             color: white;
         }
         h3 {
@@ -34,8 +34,8 @@
 </head>
 <body>
 <div class="head">
-    <p><img src="c:/image/smkn2.png" width="100px" height="100px" style="float:left;">
-    <p><img src="c:/image/jabar1.png" width="100px" height="100px" style="float:right;">
+    <p><img src="c:/image/smkn2.png" width="92px" height="100px" style="float:left;">
+    <p><img src="c:/image/jabar1.png" width="156px" height="100px" style="float:right;">
     <p align="center">PEMERINTAH PROVINSI JAWA BARAT<br>
         DINAS PENDIDIKAN<br>
         <strong>Laporan Data Level</strong> <br>
@@ -61,6 +61,7 @@
                 <td>{{ $key+1 }}</td>
                 <td>{{ $data->kode_level}}</td>
                 <td>{{ $data->nama_level}}</td>
+            </tr>
         @endforeach
 
         </tbody>

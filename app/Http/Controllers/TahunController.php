@@ -18,7 +18,22 @@ class TahunController extends Controller
     {
         $tahuns = Tahun::all();
 
-        return view('tahuns/index', compact('tahuns'));
+       $id_tahun = Tahun::select('kode_tahun')->whereRaw('id_tahun = (select max(`id_tahun`) from tahuns) ')->first();
+        $kode = substr($id_tahun['kode_tahun'], 1,4);
+        $tambah = $kode+1;
+        if ($tambah<10) {
+            $id_tahun = "T000".$tambah;
+        } elseif ($tambah<100) {
+            $id_tahun = "T00".$tambah;
+        } elseif ($tambah<1000) {
+            $id_tahun = "T0".$tambah;
+        } else{
+            $id_tahun = "T".$tambah;
+        }
+
+
+
+        return view('tahuns/index', compact('tahuns','id_tahun'));
     }
 
     /**

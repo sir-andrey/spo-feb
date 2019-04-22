@@ -190,6 +190,8 @@ Route::get('/nilai/create', 'NilaiController@create')->name('nilai.create');
 
 Route::get('/nilai/print', 'NilaiController@print')->name('nilai.print');
 
+Route::get('/nilai/printraport', 'NilaiController@printraport')->name('nilai.printraport');
+
 Route::get('/nilai/detail/{id}', 'NilaiController@detail')->name('nilai.detail');
 
 Route::post('/nilai/store', 'NilaiController@store')->name('nilai.store');

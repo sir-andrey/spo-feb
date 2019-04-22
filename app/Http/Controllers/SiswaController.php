@@ -214,8 +214,8 @@ class SiswaController extends Controller
     public function print()
     {
         $siswa = Siswa::all();
-
-        $pdf = PDF::loadview('siswas/cetak', compact('siswa'), ['siswa' => $siswa]);
+        $datanilai = Nilai::all();
+        $pdf = PDF::loadview('siswas/cetak', compact('siswa', 'datanilai'), ['datanilai' => $datanilai]);
 
         return $pdf->stream('Cetak siswa.pdf');
     }

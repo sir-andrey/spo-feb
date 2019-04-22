@@ -74,12 +74,14 @@ use App\Nilai;
                         <th rowspan="3">Mapel</th>
                         <th colspan="14" style="text-align: center;">Semester</th>
                         <th rowspan="3">Total</th>
+                        @if(Auth::user()->id_level == 4)
+                        <th></th>                   
+                        @endif
                         
                     </tr>
                     <tr>
                         <th colspan="7" style="text-align: center;">Ganjil</th>
                         <th colspan="7" style="text-align: center;">Genap</th>
-                        
                         
                     </tr>
                     <tr>
@@ -120,6 +122,9 @@ use App\Nilai;
                                 <td>{{ $nilais->n1 + $nilais->n2 + $nilais->n3 + $nilais->pts + $nilais->pas }}</td>
                                 @endforeach
                                 <td></td>
+                                @if(Auth::user()->id_level == 4)
+                                <td><a href="{{ route('nilai.printraport') }}"><button class="btn btn-primary"><i class="fa fa-print"></i></button></a></td>                   
+                                @endif
 
                             </tr>
                         @endforeach

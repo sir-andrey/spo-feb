@@ -125,7 +125,7 @@
                   </div>
                </div>
                 <div class="form-group">
-                  <label for="recipient-name" class="control-label">Jenis Kelamin <span >*</span></label>
+                  <label for="recipient-name" class="control-label">Jenis Kelamin <span >*</span></label><br>
                   <input type="radio" name="jk" value="Laki Laki">Laki Laki<br>
                   <input type="radio" name="jk" value="Perempuan"> Perempuan<br>
                </div>  

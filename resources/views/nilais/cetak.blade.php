@@ -1,3 +1,6 @@
+@php
+use App/Nilai;
+@endphp
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,27 +52,66 @@
     <p align="center" ><strong> Data Siswa </strong></p>
     <table class="styletable">
         <thead>
-        <tr>
-            <th> No </th>
-            <th> NISN </th>
-            <th> Nama </th>
-            <th> Kelas </th>
-            <th> Tahun Ajaran </th>
-        </tr>
-        </thead>
-        <tbody>
-        @foreach($siswa as $key => $data)
-            <tr>
-                <td>{{ $key+1 }}</td>
-                <td>{{ $data->nisn}}</td>
-                <td>{{ $data->nama}}</td>
-                <td>{{ $data->kelas->tingkat }}-
-                    {{ $data->kelas->jurusan }}-
-                    {{ $data->kelas->kelas }}</td>
-                <td>{{ $data->kelas->tahun }}</td>
-        @endforeach
+                    <tr>
+                        
+                    </tr>
+                    <tr> 
+                        <th rowspan="3">No.</th>
+                        <th rowspan="3">NISN</th>
+                        <th rowspan="4">Nama</th>
+                        <th rowspan="3">Mapel</th>
+                        <th colspan="14" style="text-align: center;">Semester</th>
+                        <th rowspan="3">Total</th>
+                        
+                    </tr>
+                    <tr>
+                        <th colspan="7" style="text-align: center;">Ganjil</th>
+                        <th colspan="7" style="text-align: center;">Genap</th>
+                        
+                        
+                    </tr>
+                    <tr>
+                        <th>N1</th>
+                        <th>N2</th>
+                        <th>N3</th>
+                        <th>PTS</th>
+                        <th>PAS</th>
+                        <th>NA</th>
+                        <th>Total</th>
 
-        </tbody>
+                        <th>N1</th>
+                        <th>N2</th>
+                        <th>N3</th>
+                        <th>PTS</th>
+                        <th>PAS</th>
+                        <th>NA</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                        @foreach( $datanilai as $key => $siswa )
+                            <tr>
+                                <td>{{ $key+1 }}</td>
+                                <td>{{ $siswa->siswa->nisn }}</td>
+                                <td>{{ $siswa->siswa->nama_siswa }}</td>
+                                <td>{{ $siswa->mapel->nama_mapel }}</td>
+                                @php
+                                    $nilai = Nilai::where('id_siswa', $siswa->id_siswa)->where('id_mapel', $siswa->id_mapel)->get();
+                                @endphp
+                                @foreach($nilai as $key => $nilais)
+                                <td>{{ $nilais->n1 }}</td>
+                                <td>{{ $nilais->n2 }}</td>
+                                <td>{{ $nilais->n3 }}</td>
+                                <td>{{ $nilais->pts }}</td>
+                                <td>{{ $nilais->pas }}</td>                     
+                                <td>{{ ($nilais->n1 + $nilais->n2 + $nilais->n3 + $nilais->pts + $nilais->pas) / 5 }}</td>
+                                <td>{{ $nilais->n1 + $nilais->n2 + $nilais->n3 + $nilais->pts + $nilais->pas }}</td>
+                                @endforeach
+                                <td></td>
+
+                            </tr>
+                        @endforeach
+                </tbody>
     </table>
     <br>
     <br>

@@ -114,12 +114,17 @@
                     <h3 class="menu-title">Walikelas</h3><!-- /.menu-title -->
 
                     <li>
+                        <a href="{{ route('nilai.index') }}"> <i class="menu-icon ti-calendar"></i>Data Nilai </a>
+                    </li>
+
+                    <li>
                         <a href="{{ route('absen.index') }}"> <i class="menu-icon ti-agenda"></i>Rekapitulasi </a>
                     </li>
 
                     <li>
                         <a href="{{ route('absen.create') }}"> <i class="menu-icon ti-calendar"></i>Absensi </a>
                     </li>
+
                     @endif                   
                 </ul>
             </div><!-- /.navbar-collapse -->

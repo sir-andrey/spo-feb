@@ -32,6 +32,14 @@ class NilaiController extends Controller
             $id_mapel = $mapel['id_mapel'];
 
             $datanilai = Nilai::select('id_siswa', 'id_mapel')->where('id_mapel', $id_mapel)->distinct()->get();
+        }elseif (Auth::user()->id_level == 4) {
+            $id_user = Auth::user()->id;
+
+            $walikelas = walikelas::select('id_kelas')->where('id_user', $id_user)->first();
+
+            $id_kelas = $walikelas['id_kelas'];
+
+            $siswa = Siswa::where('id_kelas', $id_kelas)->get();
         }else{
             $id_user = Auth::user()->id;
 
@@ -171,9 +179,9 @@ class NilaiController extends Controller
 
     public function print()
     {
-        $nilai = Nilai::all();
+        $datanilai = Nilai::all();
 
-        $pdf = PDF::loadview('nilais/cetak', compact('nilai'), ['nilai' => $nilai]);
+        $pdf = PDF::loadview('nilais/cetak', compact('datanilai'), ['datanilai' => $datanilai]);
 
         return $pdf->stream('Cetak nilai.pdf');
     }

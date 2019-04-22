@@ -13,7 +13,8 @@ class GuruTableSeeder extends Seeder
     public function run()
     {
         DB::table('gurus')->insert([
-        	'id_guru' => '1',
+            'id_guru' => '1',
+        	'id_user' => '3',
             'kode_guru' => 'G0001',
         	'nip' => '123456789',
         	'nama_guru' => 'Gani Setiawan',
